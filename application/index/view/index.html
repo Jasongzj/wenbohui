@@ -1,0 +1,363 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>《牛不牛？看我造艘游艇逛文博》</title>
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-title" content="《牛不牛？看我造艘游艇逛文博》" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name='apple-touch-fullscreen' content='yes'>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+<meta content="telephone=no" name="format-detection" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<link rel="stylesheet" href="__IMAGES__/layer.css" />
+<link rel="stylesheet" href="__IMAGES__/fullPage.css"/>
+<link rel="stylesheet" href="__IMAGES__/style.css"/>
+<script src="__JS__/h5.js"></script>
+<script src="__JS__/jweixin-1.0.0.js"></script>
+<script>
+function autoPlayAudio() {
+	wx.config({
+		debug: false,
+		appId: '',
+		timestamp: 1,
+		nonceStr: '',
+		signature: '',
+		jsApiList: []
+	});
+	wx.ready(function() {
+		var globalAudio=document.getElementById("audio");
+		globalAudio.play();
+	});
+};
+autoPlayAudio();
+</script>
+</head>
+<body>
+<div id="bg-music">
+    <audio loop src="__IMAGES__/music.mp3" autoplay="" preload="" id="audio"></audio>
+	<a class="on" onclick="play_music()"></a>
+</div>
+
+<!--loading-->
+<div id="loading"><img src="__IMAGES__/loading.gif" /></div>
+
+<div id="wraper">
+	<!--01：封面-->
+    <div class="section cover">
+        <img src="__IMAGES__/cover-them.png" class="cover-them floatMoveUp" />
+        <img src="__IMAGES__/cover-txt01.png" class="cover-txt01" />
+        <a href="#map"><img src="__IMAGES__/cover-btn.png" class="cover-btn floatMove" /></a>
+        <img src="__IMAGES__/cover-txt02.png" class="cover-txt02 bounceInUp" />
+    </div>
+    
+	<!--02：航线图-->
+    <div class="section map">
+		<img src="__IMAGES__/map.jpg" />
+        <a href="#main"><img src="__IMAGES__/map-btn.png" class="map-btn floatMove" /></a>
+    </div>
+    
+    <!--03：主展馆-->
+    <div class="section mainHall">
+		<a href="#main-more" class="click"><img src="__IMAGES__/click.png" class="floatMoveUp" /></a>
+    	<a href="#main-more"><img src="__IMAGES__/mainHall.png" /></a>
+    </div>
+    <!--04-->
+    <div class="section detail-bg">
+		<div class="p04">
+        	<a href="javascript:void(0)" class="main-detail"><img src="__IMAGES__/p04.png" /></a>
+        </div>
+    	<a href="#venue"><img src="__IMAGES__/btn-go-on.png" class="btn-go-on" /></a>
+    </div>
+
+    <!--05：分会场-->
+    <div class="section mainHall venue-bg">
+		<a href="#venue-more" class="click"><img src="__IMAGES__/click.png" class="floatMoveUp" /></a>
+    	<a href="#venue-more"><img src="__IMAGES__/venue.png" style="margin-top:-.2rem" /></a>
+    </div>
+    <!--06-->
+    <div class="section detail-bg">
+		<div class="p06">
+        	<a href="javascript:void(0)" class="meigui-detail"><img src="__IMAGES__/p06-01.jpg" class="p06-01" /></a>
+            <a href="javascript:void(0)" class="manjinghua-detail"><img src="__IMAGES__/p06-02.jpg" class="p06-02" /></a>
+        </div>
+    	<a href="#act"><img src="__IMAGES__/btn-go-on.png" class="btn-go-on" /></a>
+    </div>
+
+    <!--07：配套活动-->
+    <div class="section mainHall">
+		<a href="#act-more" class="click"><img src="__IMAGES__/click.png" class="floatMoveUp" /></a>
+    	<a href="#act-more"><img src="__IMAGES__/act.png" /></a>
+    </div>
+    <!--08-->
+    <div class="section detail-bg">
+		<div class="p06 p10">
+        	<a href="#act-more-01"><img src="__IMAGES__/p10-01.jpg" class="p06-01" /></a>
+            <a href="#act-more-02"><img src="__IMAGES__/p10-02.jpg" class="p06-02" /></a>
+        </div>
+    	<a href="#bright"><img src="__IMAGES__/btn-go-on.png" class="btn-go-on" /></a>
+    </div>
+    <!--09-->
+    <div class="section detail-bg">
+		<div class="p07">
+        	<a href="javascript:void(0)" class="hanchen-detail"><img src="__IMAGES__/p11.png" /></a>
+        </div>
+    	<a href="#act-more"><img src="__IMAGES__/btn-back.png" class="btn-back" /></a>
+    </div>
+    <!--10-->
+    <div class="section detail-bg">
+		<div class="p07">
+        	<a href="javascript:void(0)" class="wenhuazhou-detail"><img src="__IMAGES__/p12.png" /></a>
+        </div>
+    	<a href="#act-more"><img src="__IMAGES__/btn-back.png" class="btn-back" /></a>
+    </div>
+    
+    <!--11：亮点-->
+    <div class="section mainHall venue-bg">
+		<a href="#bright-more" class="click"><img src="__IMAGES__/click.png" class="floatMoveUp" /></a>
+    	<a href="#bright-more"><img src="__IMAGES__/bright.png" /></a>
+    </div>
+    <!--12-->
+    <div class="section detail-bg">
+		<div class="p07">
+        	<a href="javascript:void(0)" class="liangdian-detail"><img src="__IMAGES__/liangdian.png" /></a>
+        </div>
+    	<a href="#end"><img src="__IMAGES__/btn-go-on.png" class="btn-go-on" /></a>
+    </div>
+
+    <!--13：尾页-->
+    <div class="section cover end">
+		<img src="__IMAGES__/end-them.png" class="end-them " />
+        <a href="javascript:void(0)" class="qr-code"><img src="__IMAGES__/end-btn.png" class="end-btn floatMoveUp" /></a>
+    </div>
+</div>
+<script src="__JS__/jquery.min.js"></script>
+<script src="__JS__/layer.js"></script>
+<script src="__JS__/fullPage.js"></script>
+<script>
+$(function(){
+$('#wraper').fullpage({
+    verticalCentered: false,
+    continuousVertical: false,
+    //loopBottom:true,
+    anchors: ['cover','map','main','main-more','venue','venue-more','act','act-more','act-more-01','act-more-02','bright','bright-more','end'],
+    recordHistory:false,
+    scrollingSpeed:700
+});
+});
+//弹出框：主展馆详情
+$('.main-detail').on('click', function(){
+  layer.config({
+	skin: 'mylayer'
+  });
+  layer.open({
+    type: 1,
+    title: false,
+    area: ['100%', '100%'],
+	offset: 't',
+	anim: 2,
+    content: '<div class="detail-bg"><div class="p07"><img src="__IMAGES__/detail.png" /></div></div>'
+  });
+});
+//弹出框：玫瑰海岸
+$('.meigui-detail').on('click', function(){
+  layer.config({
+	skin: 'mylayer'
+  });
+  layer.open({
+    type: 1,
+    title: false,
+    area: ['100%', '100%'],
+	offset: 't',
+	anim: 2,
+    content: '<div class="detail-bg"><div class="p07"><img src="__IMAGES__/p07.png" /></div></div>'
+  });
+});
+//弹出框：满京华艺象
+$('.manjinghua-detail').on('click', function(){
+  layer.config({
+	skin: 'mylayer'
+  });
+  layer.open({
+    type: 1,
+    title: false,
+    area: ['100%', '100%'],
+	offset: 't',
+	anim: 2,
+    content: '<div class="detail-bg"><div class="p07"><img src="__IMAGES__/p08.png" /></div></div>'
+  });
+});
+//弹出框：汉辰影业活动安排
+$('.hanchen-detail').on('click', function(){
+  layer.config({
+	skin: 'mylayer'
+  });
+  layer.open({
+    type: 1,
+    title: false,
+    area: ['100%', '100%'],
+	offset: 't',
+	anim: 2,
+    content: '<div class="detail-bg"><div class="p07"><img src="__IMAGES__/hanchen-detail.png" /></div></div>'
+  });
+});
+//弹出框：文化周活动安排
+$('.wenhuazhou-detail').on('click', function(){
+  layer.config({
+	skin: 'mylayer'
+  });
+  layer.open({
+    type: 1,
+    title: false,
+    area: ['100%', '100%'],
+	offset: 't',
+	anim: 2,
+    content: '<div class="detail-bg"><div class="p07"><img src="__IMAGES__/wenhuazhou-detail.png" /></div></div>'
+  });
+});
+//弹出框：亮点
+$('.liangdian-detail').on('click', function(){
+  layer.config({
+	skin: 'mylayer'
+  });
+  layer.open({
+    type: 1,
+    title: false,
+    area: ['100%', '100%'],
+	offset: 't',
+	anim: 2,
+    content: '<div class="detail-bg"><div class="p07"><img src="__IMAGES__/liangdian-detail.png" /></div></div>'
+  });
+});
+//弹出框：二维码
+$('.qr-code').on('click', function(){
+  layer.config({
+	skin: 'codelayer'
+  });
+  layer.open({
+    type: 1,
+    title: false,
+    area: ['2.66rem', '3.3rem'],
+	anim: 2,
+    content: '<div class="code"><img src="__IMAGES__/qr-code.png" /></div>'
+  });
+});
+//背景音乐
+function play_music(){  
+    if ($('#bg-music a').hasClass('on')){  
+        $('#bg-music audio').get(0).pause();
+        $('#bg-music a').attr('class','stop');  
+    }else{  
+        $('#bg-music audio').get(0).play();  
+        $('#bg-music a').attr('class','on');  
+    }  
+}
+function just_play(id){  
+    $('#bg-music audio').get(0).play();  
+    $('#bg-music a').attr('class','on');  
+}
+$(function(){
+	just_play();
+});
+//loading
+function preLoad(){
+    $('#loading').hide();
+}
+var img = new Image();
+img.src = "__IMAGES__/cover-bg.jpg";
+img.onload = function(){
+    $('#loading').show();
+    preloadImgs(imgMap);
+}
+var imgMap = [
+    "__IMAGES__/cover-bg.jpg",
+    "__IMAGES__/cover-them.png",
+    "__IMAGES__/cover-txt01.png",
+    "__IMAGES__/cover-txt02.png",
+    "__IMAGES__/cover-btn.png",
+    "__IMAGES__/map.jpg",
+	"__IMAGES__/click.png",
+	"__IMAGES__/mainHall.png",
+	"__IMAGES__/venue.png",
+	"__IMAGES__/venue-bg.jpg",
+	"__IMAGES__/act.png",
+	"__IMAGES__/mainHall-bg.jpg",
+	"__IMAGES__/detail-bg.jpg",
+	"__IMAGES__/qr-code.png",
+	"__IMAGES__/p06-01.jpg",
+	"__IMAGES__/p06-02.jpg",
+	"__IMAGES__/p10-01.jpg",
+	"__IMAGES__/p10-02.jpg",
+	"__IMAGES__/detail.png",
+	"__IMAGES__/liangdian.png",
+	"__IMAGES__/liangdian-detail.png",
+	"__IMAGES__/p04.png",
+	"__IMAGES__/p06.png",
+	"__IMAGES__/p07.png",
+	"__IMAGES__/p08.png",
+	"__IMAGES__/p10.png",
+	"__IMAGES__/p11.png",
+	"__IMAGES__/p12.png",
+	"__IMAGES__/hanchen-detail.png",
+	"__IMAGES__/wenhuazhou-detail.png",
+	"__IMAGES__/end-btn.png",
+	"__IMAGES__/bright.png",
+	"__IMAGES__/btn-back.png",
+	"__IMAGES__/btn-go-on.png",
+	"__IMAGES__/end-them.png"
+]
+function preloadImgs(imgArr){
+    var maxCnt = imgArr.length;
+    var handler = throttle(loadImgHandler);
+    for(var i=0;i<imgArr.length;i++){
+        var img = new Image;
+        img.src = imgArr[i];
+        img.onload = function(){
+            maxCnt --;
+            var progress = parseInt(((imgArr.length - maxCnt) / imgArr.length) * 100) / 10;
+            handler(progress*10);
+        }
+    }
+}
+function loadImgHandler(progress){
+    if (progress != 100) {
+        $(".percentnum").text(progress+"%")
+    }else{
+        preLoad();
+        return;
+    }
+}
+function throttle(func, wait) {
+    var timeout = null;
+    var previous = 0;
+    var callbacks = [];
+    var later = function(param) {
+        previous = Date.now();
+        timeout = null;
+        func(param);
+        callbacks.length && callbacks.shift()();
+    }
+    var push = function(callback) {
+        typeof callback === 'function' && callbacks.push(callback);
+    }
+    wait || (wait = 100);
+    return function proxy(param) {
+        var now = Date.now();
+        var remaining = wait - (now - previous);
+        if (remaining <= 0 && !timeout) {
+            previous = now;
+            func(param);
+        } else if (!timeout) {
+            timeout = setTimeout(function() {
+                later(param);
+            }, remaining);
+        } else {
+            push(function(){
+                proxy(param);
+            });
+        }
+    };
+}
+</script>
+</body>
+</html>
