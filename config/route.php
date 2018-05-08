@@ -11,6 +11,7 @@
 
 use think\Route;
 
-Route::get('wechat', 'wechat/Index/index');
+Route::rule('wechat', 'wechat/Index/index');
 
-Route::get('/', 'index/Index/index');
+Route::miss('index/miss');
+

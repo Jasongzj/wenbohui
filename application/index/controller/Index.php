@@ -7,6 +7,11 @@ class Index extends Controller
 {
     public function index()
     {
-        return $this->fetch();
+        return $this->fetch('index/index');
+    }
+
+    public function miss()
+    {
+        return $this->index();
     }
 }
