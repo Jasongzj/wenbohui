@@ -240,4 +240,11 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+
+    //微信配置
+    'wechat'                => [
+        'appid' => 'wx26640b92468a6bea',
+        //app_secret
+        'app_secret' => '',
+    ],
 ];
