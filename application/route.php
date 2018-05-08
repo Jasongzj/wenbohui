@@ -12,3 +12,5 @@
 use think\Route;
 
 Route::get('wechat', 'wechat/Index/index');
+
+Route::get('/', 'index/Index/index');
