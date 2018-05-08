@@ -13,5 +13,4 @@ use think\Route;
 
 Route::rule('wechat', 'wechat/Index/index');
 
-Route::miss('index/miss');
 
