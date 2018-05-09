@@ -17,17 +17,81 @@
 <script src="__JS__/jweixin-1.0.0.js"></script>
 <script>
 function autoPlayAudio() {
-	wx.config({
-		debug: false,
-		appId: '',
-		timestamp: 1,
-		nonceStr: '',
-		signature: '',
-		jsApiList: []
-	});
+	wx.config(/*{
+        debug: false,
+            appId: 'wx26640b92468a6bea',
+            timestamp: 1,
+            nonceStr: '',
+            signature: '',
+            jsApiList: []
+    }*/{$jssdk});
 	wx.ready(function() {
 		var globalAudio=document.getElementById("audio");
 		globalAudio.play();
+        //分享到朋友圈
+        wx.onMenuShareTimeline({
+            title: '{$title}', // 分享标题
+            link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: '{$imgUrl}', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        //分享给朋友
+        wx.onMenuShareAppMessage({
+            title: '{$title}', // 分享标题
+            desc: '{$desc}', // 分享描述
+            link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: '{$imgUrl}', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        //分享到QQ
+        wx.onMenuShareQQ({
+            title: '{$title}', // 分享标题
+            desc: '{$desc}', // 分享描述
+            link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: '{$imgUrl}', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        //分享到腾讯微博
+        wx.onMenuShareWeibo({
+            title: '{$title}', // 分享标题
+            desc: '{$desc}', // 分享描述
+            link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: '{$imgUrl}', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        //分享到QQ空间
+        wx.onMenuShareQZone({
+            title: '{$title}', // 分享标题
+            desc: '{$desc}', // 分享描述
+            link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: '{$imgUrl}', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
 	});
 };
 autoPlayAudio();
@@ -357,75 +421,6 @@ function throttle(func, wait) {
         }
     };
 }
-</script>
-<script type="text/javascript" charset="utf-8">
-    wx.config(
-        {$jssdk}
-    );
-    //分享到朋友圈
-    wx.onMenuShareTimeline({
-        title: '{$title}', // 分享标题
-        link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        imgUrl: '{$imgUrl}', // 分享图标
-        success: function () {
-            // 用户确认分享后执行的回调函数
-        },
-        cancel: function () {
-            // 用户取消分享后执行的回调函数
-        }
-    });
-    //分享给朋友
-    wx.onMenuShareAppMessage({
-        title: '{$title}', // 分享标题
-        desc: '{$desc}', // 分享描述
-        link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        imgUrl: '{$imgUrl}', // 分享图标
-        success: function () {
-            // 用户确认分享后执行的回调函数
-        },
-        cancel: function () {
-            // 用户取消分享后执行的回调函数
-        }
-    });
-    //分享到QQ
-    wx.onMenuShareQQ({
-        title: '{$title}', // 分享标题
-        desc: '{$desc}', // 分享描述
-        link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        imgUrl: '{$imgUrl}', // 分享图标
-        success: function () {
-            // 用户确认分享后执行的回调函数
-        },
-        cancel: function () {
-            // 用户取消分享后执行的回调函数
-        }
-    });
-    //分享到腾讯微博
-    wx.onMenuShareWeibo({
-        title: '{$title}', // 分享标题
-        desc: '{$desc}', // 分享描述
-        link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        imgUrl: '{$imgUrl}', // 分享图标
-        success: function () {
-            // 用户确认分享后执行的回调函数
-        },
-        cancel: function () {
-            // 用户取消分享后执行的回调函数
-        }
-    });
-    //分享到QQ空间
-    wx.onMenuShareQZone({
-        title: '{$title}', // 分享标题
-        desc: '{$desc}', // 分享描述
-        link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        imgUrl: '{$imgUrl}', // 分享图标
-        success: function () {
-            // 用户确认分享后执行的回调函数
-        },
-        cancel: function () {
-            // 用户取消分享后执行的回调函数
-        }
-    });
 </script>
 </body>
 </html>
