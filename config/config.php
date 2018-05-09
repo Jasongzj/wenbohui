@@ -245,6 +245,6 @@ return [
     'wechat'                => [
         'appid' => 'wx26640b92468a6bea',
         //app_secret
-        'app_secret' => '',
+        'app_secret' => '1e97fd881855d0ac40120f6387843251',
     ],
 ];
