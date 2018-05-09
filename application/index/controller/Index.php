@@ -11,9 +11,9 @@ class Index extends Controller
         $wechatModel = new Wechat();
         $jssdk = $wechatModel->getJssdk();
         $title = '《牛不牛？看我造艘游艇逛文博》';
-        $link = 'www.chingso.com';
-        $desc = '';
-        $imgUrl = '';
+        $link = 'https://www.chingso.com';
+        $desc = '现代“最美新娘”长啥样？来文博会大鹏新区分会场寻答案';
+        $imgUrl = '__IMAGES__/thumb.png';
         $this->assign([
             'jssdk' => $jssdk,
             'title' => $title,
