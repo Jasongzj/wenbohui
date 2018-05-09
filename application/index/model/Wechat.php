@@ -17,7 +17,7 @@ class Wechat
     {
         $config = [
             'app_id' => config('wechat.appid'),
-            'secret' => config('wechat.secret'),
+            'secret' => config('wechat.app_secret'),
 
         ];
         $app = Factory::officialAccount($config);
