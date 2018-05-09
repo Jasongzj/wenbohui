@@ -18,7 +18,6 @@ class Wechat
         $config = [
             'app_id' => config('wechat.appid'),
             'secret' => config('wechat.app_secret'),
-
         ];
         $app = Factory::officialAccount($config);
         $jssdk = $app->jssdk->buildConfig([
@@ -36,6 +35,6 @@ class Wechat
             'signature'=> '4F76593A4245644FAE4E1BC940F6422A0C3EC03E',
             'jsApiList'=> ['onMenuShareQQ', 'onMenuShareWeibo']
         ];*/
-        return json_encode($jssdk);
+        return $jssdk;
     }
 }
