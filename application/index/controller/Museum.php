@@ -8,6 +8,7 @@
 
 namespace app\index\controller;
 
+use app\index\model\Wechat;
 use think\Controller;
 
 
