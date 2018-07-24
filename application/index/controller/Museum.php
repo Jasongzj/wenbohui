@@ -9,7 +9,9 @@
 namespace app\index\controller;
 
 use app\index\model\Wechat;
+use EasyWeChat\Factory;
 use think\Controller;
+use think\Session;
 
 
 class Museum extends Controller
@@ -17,7 +19,7 @@ class Museum extends Controller
     public function index()
     {
         $wechatModel = new Wechat();
-        $jssdk = $wechatModel->getJssdk();
+        $jssdk = $wechatModel->OAuthAndJssdk();
         $title = '是时候，对一个博览会动手了';
         $link = 'https://www.chingso.com/museum';
         $desc = '恭喜你，成为第20180726位唤醒人';
@@ -28,7 +30,32 @@ class Museum extends Controller
             'link' => $link,
             'desc' => $desc,
             'imgUrl' => $imgUrl,
+            'nickName' => Session::get('wechat_user'),
         ]);
         return $this->fetch('museum/index');
+    }
+
+    public function callback()
+    {
+        $config = [
+            'app_id' => config('wechat.appid'),
+            'secret' => config('wechat.app_secret'),
+            'oauth' => [
+                'scopes'   => ['snsapi_userinfo'],
+                'callback' => '/museum/callback',
+            ],
+        ];
+
+        $app = Factory::officialAccount($config);
+        $oauth = $app->oauth;
+
+        // 获取 OAuth 授权结果用户信息
+        $user = $oauth->user();
+
+        Session::set('wechat_user', $user->getNickname());
+
+        $targetUrl = Session::get('target_url');
+
+        $this->redirect($targetUrl);
     }
 }

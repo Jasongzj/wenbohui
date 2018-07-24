@@ -10,6 +10,7 @@ namespace app\index\model;
 
 
 use EasyWeChat\Factory;
+use think\Session;
 
 class Wechat
 {
@@ -35,6 +36,36 @@ class Wechat
             'signature'=> '4F76593A4245644FAE4E1BC940F6422A0C3EC03E',
             'jsApiList'=> ['onMenuShareQQ', 'onMenuShareWeibo']
         ];*/
+        return $jssdk;
+    }
+
+    public function OAuthAndJssdk()
+    {
+        $config = [
+            'app_id' => config('wechat.appid'),
+            'secret' => config('wechat.app_secret'),
+            'oauth' => [
+                'scopes'   => ['snsapi_userinfo'],
+                'callback' => '/museum/callback',
+            ],
+        ];
+
+        $app = Factory::officialAccount($config);
+        $oauth = $app->oauth;
+
+        if (empty(Session::get('wechat_user'))) {
+            Session::set('target_url', '/museum');
+
+            $oauth->redirect()->send();
+        }
+
+        $jssdk = $app->jssdk->buildConfig([
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo',
+            'onMenuShareQZone'
+        ]);
         return $jssdk;
     }
 }
