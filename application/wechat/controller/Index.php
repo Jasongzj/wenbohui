@@ -4,6 +4,7 @@ namespace app\wechat\controller;
 
 use think\Controller;
 use think\Request;
+use EasyWeChat\Factory;
 
 class Index extends Controller
 {
@@ -30,5 +31,21 @@ class Index extends Controller
             echo  $echostr;
             exit;
         }
+    }
+
+    /**
+     * 微信授权
+     */
+    public function oAuth()
+    {
+        $config = [
+            'app_id' => config('wechat.appid'),
+            'secret' => config('wechat.app_secret'),
+            'oauth' => [
+
+            ],
+        ];
+
+        $app = Factory::officialAccount($config);
     }
 }

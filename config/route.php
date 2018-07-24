@@ -13,4 +13,6 @@ use think\Route;
 
 Route::rule('wechat', 'wechat/Index/index');
 
+//宝博会项目
+Route::rule('museum', 'index/Museum/index');
 
