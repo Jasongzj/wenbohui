@@ -84,6 +84,7 @@
             var player1 = $("#player1").get(0);
             if (player1.paused)
                 player1.play();
+
             $(".loading_part").css("width",$(window).height());
             $(".loading_part").css("height",$(window).width());
             $(".loading_part").css("position","relative");
@@ -125,8 +126,33 @@
             document.getElementById("loading_part").addEventListener("webkitAnimationEnd", function(){
                 $(".loading_part").hide();
                 $(".opendoor_part").css("display","block");
+
                 var player1 = $("#player1").get(0);
                 player1.pause();
+
+                var player2 = $("#player").get(0);
+                if (player2.paused) {
+                    player2.play();
+                }else{
+                    player2.pause();
+                }
+
+                $(".gallery").css("display","block");
+                $(".opendoor_part .left_door .door").attr("id","leftdoor");
+                $(".opendoor_part .right_door .door").attr("id","rightdoor");
+                $(".opendoor_part .title_door").hide();
+                $(".opendoor_part .brand_door").hide();
+                document.getElementById("rightdoor").addEventListener("webkitAnimationEnd", function(){$(".opendoor_part .right_door .door").hide();$(".opendoor_part").css("display","none");
+                    var player2 = $("#player").get(0);
+                    if (player2.paused)
+                        player2.play();
+                });
+                document.getElementById("leftdoor").addEventListener("webkitAnimationEnd", function(){$(".opendoor_part .left_door .door").hide();$(".opendoor_part").css("display","none");
+                    var player2 = $("#player").get(0);
+                    if (player2.paused)
+                        player2.play();
+                });
+
             });
 
             $(".loading_part .loading6").css("position","absolute");
@@ -152,6 +178,7 @@
             $(".loading_part .loading7").animate({left:($(window).height()*66/100)+"px"},2350,"linear");
             $(".loading_part .loading7").animate({left:($(window).height()*69/100)+"px",top:($(window).width()*54/100)+"px"},250,"linear");
             $(".loading_part .loading7").animate({left:($(window).height()*88/100)+"px"},1800,"linear");
+
             $(".opendoor_part").css("width",$(window).height());
             $(".opendoor_part").css("height",$(window).width());
             $(".opendoor_part").css("z-index",661);
@@ -159,48 +186,41 @@
             $(".opendoor_part").css("left",($(".opendoor_part").height()-$(".opendoor_part").width())/2);
             $(".opendoor_part").css("top",-($(".opendoor_part").height()-$(".opendoor_part").width())/2);
             $(".opendoor_part").addClass("ture90deg");
+
             $(".opendoor_part .background_door").css("position","absolute");
             $(".opendoor_part .background_door").css("left",0);
             $(".opendoor_part .background_door").css("top",0);
             $(".opendoor_part .background_door").css("height",$(window).width());
             $(".opendoor_part .background_door").css("width",$(window).height());
+
             $(".opendoor_part .brand_door").css("position","absolute");
             $(".opendoor_part .brand_door").css("left",0);
             $(".opendoor_part .brand_door").css("top",0);
             $(".opendoor_part .brand_door").css("width",$(window).height());
             $(".opendoor_part .brand_door").css("height","25%");
+
             $(".opendoor_part .title_door").css("position","absolute");
             $(".opendoor_part .title_door").css("left",0);
             $(".opendoor_part .title_door").css("top",$(window).width()*2/3);
             $(".opendoor_part .title_door").css("width",$(window).height());
             $(".opendoor_part .title_door").css("height","25%");
+
             $(".opendoor_part .left_door").css("position","absolute");
             $(".opendoor_part .left_door").css("left",0);
             $(".opendoor_part .left_door").css("top",0);
             $(".opendoor_part .left_door").css("width",$(window).height()*11/20);
             $(".opendoor_part .left_door").css("height",$(window).width());
+
             $(".opendoor_part .right_door").css("position","absolute");
             $(".opendoor_part .right_door").css("left",$(window).height()*9/20);
             $(".opendoor_part .right_door").css("top",0);
             $(".opendoor_part .right_door").css("width",$(window).height()*11/20);
             $(".opendoor_part .right_door").css("height",$(window).width());
+
             $(".opendoor_part").click(function(){
-                $(".gallery").css("display","block");
-                $(".opendoor_part .left_door .door").attr("id","leftdoor");
-                $(".opendoor_part .right_door .door").attr("id","rightdoor");
-                //$(".opendoor_part .click_door").hide();
-                $(".opendoor_part .title_door").hide();
-                $(".opendoor_part .brand_door").hide();
-                document.getElementById("rightdoor").addEventListener("webkitAnimationEnd", function(){$(".opendoor_part .right_door .door").hide();$(".opendoor_part").css("display","none");});
-                document.getElementById("leftdoor").addEventListener("webkitAnimationEnd", function(){$(".opendoor_part .left_door .door").hide();$(".opendoor_part").css("display","none");});
-                var player2 = $("#player").get(0);
-                if (player2.paused) {
-                    player2.play();
-                }else{
-                    player2.pause();
-                }
 
             });
+
 
             $(".gallery").css("width",$(window).width());
             $(".gallery").css("position","absolute");
@@ -226,13 +246,13 @@
             $(".gallery .distribution_part .distribution2").css("top",$(window).width()*40/100);
             $(".gallery .distribution_part .distribution2").css("width",$(window).width()/6);
             $(".gallery .distribution_part .distribution2").css("height",$(window).width()/6);
-            //$(".gallery .distribution_part .distribution2").css("display","none");
+
             $(".gallery .distribution_part .distribution3").css("position","absolute");
             $(".gallery .distribution_part .distribution3").css("left",$(window).height()*80/100+$(window).width()/20);
             $(".gallery .distribution_part .distribution3").css("top",$(window).width()*40/100+$(window).width()/17+10);
             $(".gallery .distribution_part .distribution3").css("width",$(window).width()/6);
             $(".gallery .distribution_part .distribution3").css("height",$(window).width()/6);
-            //$(".gallery .distribution_part .distribution3").css("display","none");
+
             $(".distribution_part").click(function(){
                 var e = window.event;
                 var space = $(window).width()/12;
@@ -254,6 +274,7 @@
             $(".gallery .chinagermany_part").css("left",($(".gallery .chinagermany_part").height()-$(".gallery .chinagermany_part").width())/2);
             $(".gallery .chinagermany_part").css("top",-($(".gallery .chinagermany_part").height()-$(".gallery .chinagermany_part").width())*3/2);
             $(".gallery .chinagermany_part").addClass("ture90deg");
+
             $(".gallery .chinagermany_part .chinagermany").css("position","absolute");
             $(".gallery .chinagermany_part .chinagermany").css("left",0);
             $(".gallery .chinagermany_part .chinagermany").css("top",0);
@@ -266,10 +287,10 @@
             $(".gallery .chinagermany_part .chinagermany2").css("height","25%");
             $(".gallery .chinagermany_part .chinagermany2").css("z-index","332");
             $(".gallery .chinagermany_part .chinagermany3").css("position","absolute");
-            $(".gallery .chinagermany_part .chinagermany3").css("left",$(window).height()*55/100);
-            $(".gallery .chinagermany_part .chinagermany3").css("top",$(window).width()*59/100);
-            $(".gallery .chinagermany_part .chinagermany3").css("width",$(window).height()*40/100);
-            $(".gallery .chinagermany_part .chinagermany3").css("height","31%");
+            $(".gallery .chinagermany_part .chinagermany3").css("left",$(window).height()*56/100);
+            $(".gallery .chinagermany_part .chinagermany3").css("top",$(window).width()*56/100);
+            $(".gallery .chinagermany_part .chinagermany3").css("width",$(window).height()*41/100);
+            $(".gallery .chinagermany_part .chinagermany3").css("height","40%");
             $(".gallery .chinagermany_part .chinagermany3").css("z-index","334");
             $(".gallery .chinagermany_part .chinagermany4").css("position","absolute");
             $(".gallery .chinagermany_part .chinagermany4").css("left",$(window).height()*57/100);
@@ -279,16 +300,18 @@
             $(".gallery .chinagermany_part .chinagermany4").css("z-index","333");
             $(".gallery .chinagermany_part .chinagermany5").css("position","absolute");
             $(".gallery .chinagermany_part .chinagermany5").css("left",$(window).height()*79/100);
-            $(".gallery .chinagermany_part .chinagermany5").css("top",$(window).width()*69/100);
+            $(".gallery .chinagermany_part .chinagermany5").css("top",$(window).width()*70/100);
             $(".gallery .chinagermany_part .chinagermany5").css("width",$(window).width()/4);
             $(".gallery .chinagermany_part .chinagermany5").css("height",$(window).width()/4);
             $(".gallery .chinagermany_part .chinagermany5").css("z-index","333");
+
             $(".gallery .intelmanufacture_part").css("height",$(window).width());
             $(".gallery .intelmanufacture_part").css("width",$(window).height());
             $(".gallery .intelmanufacture_part").css("position","relative");
             $(".gallery .intelmanufacture_part").css("left",($(".gallery .intelmanufacture_part").height()-$(".gallery .intelmanufacture_part").width())/2);
             $(".gallery .intelmanufacture_part").css("top",-($(".gallery .intelmanufacture_part").height()-$(".gallery .intelmanufacture_part").width())*5/2);
             $(".gallery .intelmanufacture_part").addClass("ture90deg");
+
             $(".gallery .intelmanufacture_part .intelmanufacture").css("position","absolute");
             $(".gallery .intelmanufacture_part .intelmanufacture").css("left",0);
             $(".gallery .intelmanufacture_part .intelmanufacture").css("top",0);
@@ -309,22 +332,26 @@
             $(".gallery .intelmanufacture_part .intelmanufacture4").css("top",$(window).width()*25/100);
             $(".gallery .intelmanufacture_part .intelmanufacture4").css("width",$(window).height());
             $(".gallery .intelmanufacture_part .intelmanufacture4").css("height","65%");
+
             $(".gallery .intelmanufacture_part .intelmanufacture5").css("position","absolute");
-            $(".gallery .intelmanufacture_part .intelmanufacture5").css("left",$(window).height()*29/100);
+            $(".gallery .intelmanufacture_part .intelmanufacture5").css("left",$(window).height()*28/100);
             $(".gallery .intelmanufacture_part .intelmanufacture5").css("top",$(window).width()*23/100);
-            $(".gallery .intelmanufacture_part .intelmanufacture5").css("width",$(window).width()*48/100);
+            $(".gallery .intelmanufacture_part .intelmanufacture5").css("width",$(window).height()*28/100);
             $(".gallery .intelmanufacture_part .intelmanufacture5").css("height",$(window).width()*48/100);
+
             $(".gallery .intelmanufacture_part .intelmanufacture6").css("position","absolute");
-            $(".gallery .intelmanufacture_part .intelmanufacture6").css("left",$(window).height()*29/100);
+            $(".gallery .intelmanufacture_part .intelmanufacture6").css("left",$(window).height()*28/100);
             $(".gallery .intelmanufacture_part .intelmanufacture6").css("top",$(window).width()*23/100);
-            $(".gallery .intelmanufacture_part .intelmanufacture6").css("width",$(window).width()*47/100);
+            $(".gallery .intelmanufacture_part .intelmanufacture6").css("width",$(window).height()*27/100);
             $(".gallery .intelmanufacture_part .intelmanufacture6").css("height",$(window).width()*47/100);
+
             $(".gallery .electinfomation_part").css("height",$(window).width());
             $(".gallery .electinfomation_part").css("width",$(window).height());
             $(".gallery .electinfomation_part").css("position","relative");
             $(".gallery .electinfomation_part").css("left",($(".gallery .electinfomation_part").height()-$(".gallery .electinfomation_part").width())/2);
             $(".gallery .electinfomation_part").css("top",-($(".gallery .electinfomation_part").height()-$(".gallery .electinfomation_part").width())*7/2);
             $(".gallery .electinfomation_part").addClass("ture90deg");
+
             $(".gallery .electinfomation_part .electinfomation").css("position","absolute");
             $(".gallery .electinfomation_part .electinfomation").css("left",0);
             $(".gallery .electinfomation_part .electinfomation").css("top",0);
@@ -345,6 +372,7 @@
             $(".gallery .electinfomation_part .electinfomation4").css("top",$(window).width()*70/100);
             $(".gallery .electinfomation_part .electinfomation4").css("width",$(window).height()/11);
             $(".gallery .electinfomation_part .electinfomation4").css("height",$(window).width()/4);
+
             $(".gallery .electinfomation_part .electinfomation5").css("position","absolute");
             $(".gallery .electinfomation_part .electinfomation5").css("left",$(window).height()*13/20);
             $(".gallery .electinfomation_part .electinfomation5").css("top",$(window).width()*13/20);
@@ -355,12 +383,14 @@
             $(".gallery .electinfomation_part .electinfomation6").css("top",$(window).width()*14/20);
             $(".gallery .electinfomation_part .electinfomation6").css("width",$(window).width()/10);
             $(".gallery .electinfomation_part .electinfomation6").css("height",$(window).width()/10);
+
             $(".gallery .aeronautics_part").css("height",$(window).width());
             $(".gallery .aeronautics_part").css("width",$(window).height());
             $(".gallery .aeronautics_part").css("position","relative");
             $(".gallery .aeronautics_part").css("left",($(".gallery .aeronautics_part").height()-$(".gallery .aeronautics_part").width())/2);
             $(".gallery .aeronautics_part").css("top",-($(".gallery .aeronautics_part").height()-$(".gallery .aeronautics_part").width())*9/2);
             $(".gallery .aeronautics_part").addClass("ture90deg");
+
             $(".gallery .aeronautics_part .aeronautics").css("position","absolute");
             $(".gallery .aeronautics_part .aeronautics").css("left",0);
             $(".gallery .aeronautics_part .aeronautics").css("top",0);
@@ -387,12 +417,14 @@
             $(".gallery .aeronautics_part .aeronautics5").css("top",0);
             $(".gallery .aeronautics_part .aeronautics5").css("width",$(window).width()/2);
             $(".gallery .aeronautics_part .aeronautics5").css("height",$(window).width()/4);
+
             $(".gallery .laserequipment_part").css("height",$(window).width());
             $(".gallery .laserequipment_part").css("width",$(window).height());
             $(".gallery .laserequipment_part").css("position","relative");
             $(".gallery .laserequipment_part").css("left",($(".gallery .laserequipment_part").height()-$(".gallery .laserequipment_part").width())/2);
             $(".gallery .laserequipment_part").css("top",-($(".gallery .laserequipment_part").height()-$(".gallery .laserequipment_part").width())*11/2);
             $(".gallery .laserequipment_part").addClass("ture90deg");
+
             $(".gallery .laserequipment_part .laserequipment").css("position","absolute");
             $(".gallery .laserequipment_part .laserequipment").css("left",0);
             $(".gallery .laserequipment_part .laserequipment").css("top",0);
@@ -480,12 +512,13 @@
             $(".gallery .dimensioncode_part .dimensioncode5").css("left",$(window).height()*50/100);
             $(".gallery .dimensioncode_part .dimensioncode5").css("top",$(window).width()/5);
             $(".gallery .dimensioncode_part .dimensioncode5").css("height",$(window).width()/3);
-            $(".gallery .dimensioncode_part .dimensioncode5").css("width",$(window).width()/3);
+            $(".gallery .dimensioncode_part .dimensioncode5").css("width",$(window).height()/3);
             $(".gallery .dimensioncode_part .dimensioncode6").css("position","absolute");
             $(".gallery .dimensioncode_part .dimensioncode6").css("left",$(window).height()*50/100);
             $(".gallery .dimensioncode_part .dimensioncode6").css("top",$(window).width()*55/100);
             $(".gallery .dimensioncode_part .dimensioncode6").css("height",$(window).width()/3);
-            $(".gallery .dimensioncode_part .dimensioncode6").css("width",$(window).width()/3);
+            $(".gallery .dimensioncode_part .dimensioncode6").css("width",$(window).height()/3);
+
             $(window).scroll(function(event) {
                 var juantop = $(document).scrollTop();
                 var winheight = $(window).height();
@@ -504,7 +537,6 @@
                 var num7=0;
                 var num8=0;
                 var num9=0;
-
                 if((chinagermany<(juantop+winheight/2))&&((juantop+winheight/2)<intelmanufacture)){
                     var player4 = $("#player4").get(0);
                     if (player4.paused&&num4==0)
@@ -536,6 +568,7 @@
                         player6.play();
                     num6=1;
                 }else{
+
                     var player6 = $("#player6").get(0);
                     if (!player6.paused)
                         player6.pause();
@@ -576,6 +609,12 @@
                     if (!player9.paused)
                         player9.pause();
                     num9=0;
+                }
+
+                if((dimensioncode<=(juantop+winheight/2))&&((juantop+winheight/2)<(dimensioncode+winheight))){
+
+                }else{
+
                 }
 
             });
@@ -688,18 +727,18 @@
         #leftdoor{
             -webkit-transform-origin: left center;
             transform-origin: left center;
-            animation:animate2 4s 1;
-            -moz-animation:animate2 4s 1;
-            -webkit-animation:animate2 4s 1;
-            -o-animation:animate2 4s 1;
+            animation:animate21 4s 1;
+            -moz-animation:animate21 4s 1;
+            -webkit-animation:animate21 4s 1;
+            -o-animation:animate21 4s 1;
         }
         #rightdoor{
             -webkit-transform-origin: right center;
             transform-origin: right center;
-            animation:animate2 4s 1;
-            -moz-animation:animate2 4s 1;
-            -webkit-animation:animate2 4s 1;
-            -o-animation:animate2 4s 1;
+            animation:animate22 4s 1;
+            -moz-animation:animate22 4s 1;
+            -webkit-animation:animate22 4s 1;
+            -o-animation:animate22 4s 1;
         }
 
         .gallery{
@@ -751,15 +790,6 @@
             padding:0px;
             margin:0px;
             z-index:333;
-            transform-origin:center center;
-            -ms-transform-origin:center center;
-            -webkit-transform-origin:center center;
-            -moz-transform-origin:center center;
-            -o-transform-origin:center center;
-            animation:animate9 1s infinite;
-            -moz-animation:animate9 1s infinite;
-            -webkit-animation:animate9 1s infinite;
-            -o-animation:animate9 1s infinite;
         }
         .gallery .chinagermany_part .chinagermany5{
             padding:0px;
@@ -817,10 +847,6 @@
             padding:0px;
             margin:0px;
             z-index:336;
-            animation:animate8 1s infinite;
-            -moz-animation:animate8 1s infinite;
-            -webkit-animation:animate8 1s infinite;
-            -o-animation:animate8 1s infinite;
         }
 
         .gallery .electinfomation_part{
@@ -888,10 +914,10 @@
             padding:0px;
             margin:0px;
             z-index:333;
-            animation:animate5 2s infinite;
-            -moz-animation:animate5 2s infinite;
-            -webkit-animation:animate5 2s infinite;
-            -o-animation:animate5 2s infinite;
+            animation:animate8 2s infinite;
+            -moz-animation:animate8 2s infinite;
+            -webkit-animation:animate8 2s infinite;
+            -o-animation:animate8 2s infinite;
         }
         .gallery .aeronautics_part .aeronautics4{
             padding:0px;
@@ -1080,6 +1106,7 @@
     </audio>
 </div>
 
+
 <div class="gallery" style="display:none;">
 
     <div class="distribution_part">
@@ -1163,6 +1190,7 @@
         </audio>
     </div>
 
+
     <div class="aeronautics_part">
         <div class="aeronautics" width="100%" height="100%">
             <img src="__IMAGES__/museum/gallery5/background.png" alt="Smiley face" width="100%" height="100%">
@@ -1228,23 +1256,21 @@
             <img src="__IMAGES__/museum/gallery10/code.png" alt="Smiley face" width="100%" height="100%">
         </div>
         <div class="dimensioncode3" width="100%" height="100%">
-            <a href="#"><img src="__IMAGES__/museum/gallery10/sharebottom.png" alt="Smiley face" width="100%" height="100%"></a>
+            <img src="__IMAGES__/museum/gallery10/sharebottom.png" alt="Smiley face" width="100%" height="100%">
         </div>
         <div class="dimensioncode4" width="100%" height="100%">
-            <a href="#"><img src="__IMAGES__/museum/gallery10/morebottom.png" alt="Smiley face" width="100%" height="100%"></a>
+            <img src="__IMAGES__/museum/gallery10/morebottom.png" alt="Smiley face" width="100%" height="100%">
         </div>
         <div class="dimensioncode5" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery10/context2.jpg" alt="Smiley face" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery10/context2.png" alt="Smiley face" width="100%" height="100%">
         </div>
         <div class="dimensioncode6" width="100%" height="100%">
-            <span>{$nickName}</span>
             <img src="__IMAGES__/museum/gallery10/context1.png" alt="Smiley face" width="100%" height="100%">
         </div>
         <audio class="background_source" id="player10">
             <source src="__RESOURCE__/video/loveandhonest.mp3" type="audio/mpeg">
         </audio>
     </div>
-
 
 </div>
 
