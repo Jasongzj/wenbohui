@@ -13,6 +13,12 @@ use think\Route;
 
 Route::rule('wechat', 'wechat/Index/index');
 
+
+//宝博会地址回调
+Route::rule('museum/callback', 'index/Museum/callback');
+
 //宝博会项目
 Route::rule('museum', 'index/Museum/index');
+
+
 
