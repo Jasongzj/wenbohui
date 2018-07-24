@@ -20,10 +20,13 @@ class Museum extends Controller
     {
         $wechatModel = new Wechat();
         $jssdk = $wechatModel->OAuthAndJssdk();
+        $array = [20180726, 20180727, 20180728];
+        $num = $array[array_rand($array)];
         $title = '是时候，对一个博览会动手了';
         $link = 'https://www.chingso.com/museum';
-        $desc = '恭喜你，成为第20180726位唤醒人';
+        $desc = '恭喜你，成为第' . $num .'位唤醒人';
         $imgUrl = 'https://www.chingso.com/static/images/museum-thumb.jpg';
+    
         $this->assign([
             'jssdk' => $jssdk,
             'title' => $title,
@@ -31,6 +34,7 @@ class Museum extends Controller
             'desc' => $desc,
             'imgUrl' => $imgUrl,
             'nickName' => Session::get('wechat_user'),
+            'num' => $num,
         ]);
         return $this->fetch('museum/index');
     }
