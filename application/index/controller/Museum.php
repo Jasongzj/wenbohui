@@ -21,7 +21,7 @@ class Museum extends Controller
         $title = '是时候，对一个博览会动手了';
         $link = 'https://www.chingso.com/museum';
         $desc = '恭喜你，成为第20180726位唤醒人';
-        $imgUrl = 'https://www.chingso.com/static/images/thumb.png';
+        $imgUrl = 'https://www.chingso.com/static/images/museum-thumb.png';
         $this->assign([
             'jssdk' => $jssdk,
             'title' => $title,
