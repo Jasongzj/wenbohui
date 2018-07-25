@@ -13,79 +13,80 @@
 
     
     <script>
-    //微信分享
-    function share() {
-        //微信配置
-        wx.config({$jssdk});
-        wx.ready(function() {
-            //分享到朋友圈
-            wx.onMenuShareTimeline({
-                title: '{$title}', // 分享标题
-                link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                imgUrl: '{$imgUrl}', // 分享图标
-                success: function() {
-                    // 用户确认分享后执行的回调函数
-                },
-                cancel: function() {
-                    // 用户取消分享后执行的回调函数
-                }
+        //微信分享
+        function share() {
+            //微信配置
+            wx.config({$jssdk});
+            wx.ready(function() {
+                //分享到朋友圈
+                wx.onMenuShareTimeline({
+                    title: '{$title}', // 分享标题
+                    link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                    imgUrl: '{$imgUrl}', // 分享图标
+                    success: function() {
+                        // 用户确认分享后执行的回调函数
+                    },
+                    cancel: function() {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+                //分享给朋友
+                wx.onMenuShareAppMessage({
+                    title: '{$title}', // 分享标题
+                    desc: '{$desc}', // 分享描述
+                    link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                    imgUrl: '{$imgUrl}', // 分享图标
+                    success: function() {
+                        // 用户确认分享后执行的回调函数
+                    },
+                    cancel: function() {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+                //分享到QQ
+                wx.onMenuShareQQ({
+                    title: '{$title}', // 分享标题
+                    desc: '{$desc}', // 分享描述
+                    link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                    imgUrl: '{$imgUrl}', // 分享图标
+                    success: function() {
+                        // 用户确认分享后执行的回调函数
+                    },
+                    cancel: function() {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+                //分享到腾讯微博
+                wx.onMenuShareWeibo({
+                    title: '{$title}', // 分享标题
+                    desc: '{$desc}', // 分享描述
+                    link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                    imgUrl: '{$imgUrl}', // 分享图标
+                    success: function() {
+                        // 用户确认分享后执行的回调函数
+                    },
+                    cancel: function() {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+                //分享到QQ空间
+                wx.onMenuShareQZone({
+                    title: '{$title}', // 分享标题
+                    desc: '{$desc}', // 分享描述
+                    link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                    imgUrl: '{$imgUrl}', // 分享图标
+                    success: function() {
+                        // 用户确认分享后执行的回调函数
+                    },
+                    cancel: function() {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
             });
-            //分享给朋友
-            wx.onMenuShareAppMessage({
-                title: '{$title}', // 分享标题
-                desc: '{$desc}', // 分享描述
-                link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                imgUrl: '{$imgUrl}', // 分享图标
-                success: function() {
-                    // 用户确认分享后执行的回调函数
-                },
-                cancel: function() {
-                    // 用户取消分享后执行的回调函数
-                }
-            });
-            //分享到QQ
-            wx.onMenuShareQQ({
-                title: '{$title}', // 分享标题
-                desc: '{$desc}', // 分享描述
-                link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                imgUrl: '{$imgUrl}', // 分享图标
-                success: function() {
-                    // 用户确认分享后执行的回调函数
-                },
-                cancel: function() {
-                    // 用户取消分享后执行的回调函数
-                }
-            });
-            //分享到腾讯微博
-            wx.onMenuShareWeibo({
-                title: '{$title}', // 分享标题
-                desc: '{$desc}', // 分享描述
-                link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                imgUrl: '{$imgUrl}', // 分享图标
-                success: function() {
-                    // 用户确认分享后执行的回调函数
-                },
-                cancel: function() {
-                    // 用户取消分享后执行的回调函数
-                }
-            });
-            //分享到QQ空间
-            wx.onMenuShareQZone({
-                title: '{$title}', // 分享标题
-                desc: '{$desc}', // 分享描述
-                link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                imgUrl: '{$imgUrl}', // 分享图标
-                success: function() {
-                    // 用户确认分享后执行的回调函数
-                },
-                cancel: function() {
-                    // 用户取消分享后执行的回调函数
-                }
-            });
-        });
-    };
-    share();
+        };
+        share();
     </script>
+
     <script>
         $(function() {
             // 音乐
@@ -193,48 +194,38 @@
                 $(".opendoor_part").css("display", "block");
 
                 soundAudio.pause();
-                // var player1 = $("#player1").get(0);
-                // player1.pause();
-
-                // bgmAudio.play();
-                // var player2 = $("#player").get(0);
-                // if (player2.paused) {
-                //     player2.play();
-                // } else {
-                //     player2.pause();
-                // }
 
                 $(".gallery").css("display", "block");
-                $(".opendoor_part .left_door .door").attr("id", "leftdoor");
-                $(".opendoor_part .right_door .door").attr("id", "rightdoor");
+                setTimeout(function(){
+                    $(".opendoor_part .left_door .door").attr("id", "leftdoor");
+                    $(".opendoor_part .right_door .door").attr("id", "rightdoor");
+                    document.getElementById("rightdoor").addEventListener("webkitAnimationStart", function() {
+                        setTimeout(function(){
+                            $(".opendoor_part .title_door").fadeOut(1000);
+                            $(".opendoor_part .brand_door").fadeOut(1000);
+                        }, 500)
+                    });
+                    document.getElementById("rightdoor").addEventListener("webkitAnimationEnd", function() {
+                        $(".opendoor_part .right_door .door").hide();
+                        $(".opendoor_part").css("display", "none");
+                        bgmAudio.play();
+                        // var player2 = $("#player").get(0);
+                        // if (player2.paused)
+                        //     player2.play();
+                        $(".opendoor_part .title_door").hide();
+                        $(".opendoor_part .brand_door").hide();
+                    });
+                    document.getElementById("leftdoor").addEventListener("webkitAnimationEnd", function() {
+                        $(".opendoor_part .left_door .door").hide();
+                        $(".opendoor_part").css("display", "none");
+                        bgmAudio.play();
+                        // var player2 = $("#player").get(0);
+                        // if (player2.paused)
+                        //     player2.play();
+                    });
+                }, 1500);
                 // $(".opendoor_part .title_door").hide();
                 // $(".opendoor_part .brand_door").hide();
-                document.getElementById("rightdoor").addEventListener("webkitAnimationStart", function() {
-                    setTimeout(function(){
-                        $(".opendoor_part .title_door").fadeOut(300);
-                        $(".opendoor_part .brand_door").fadeOut(300);
-                    }, 100)
-                });
-                document.getElementById("rightdoor").addEventListener("webkitAnimationEnd", function() {
-                    $(".opendoor_part .right_door .door").hide();
-                    $(".opendoor_part").css("display", "none");
-                    bgmAudio.play();
-                    $('.arrow').show();
-                    // var player2 = $("#player").get(0);
-                    // if (player2.paused)
-                    //     player2.play();
-                    $(".opendoor_part .title_door").hide();
-                    $(".opendoor_part .brand_door").hide();
-                });
-                document.getElementById("leftdoor").addEventListener("webkitAnimationEnd", function() {
-                    $(".opendoor_part .left_door .door").hide();
-                    $(".opendoor_part").css("display", "none");
-                    bgmAudio.play();
-                    $('.arrow').show();
-                    // var player2 = $("#player").get(0);
-                    // if (player2.paused)
-                    //     player2.play();
-                });
 
             });
 
@@ -737,9 +728,9 @@
                 }
 
                 if ((dimensioncode <= (juantop + winheight / 2)) && ((juantop + winheight / 2) < (dimensioncode + winheight))) {
-                    $('.arrow').hide();
+
                 } else {
-                    $('.arrow').show();
+
                 }
 
                 // console.log(num9);
@@ -1250,7 +1241,6 @@
             background-size: 100% 100%;
             animation: start 1.5s infinite ease-in-out;
             z-index: 9999;
-            display: none;
         }
     </style>
 </head>
@@ -1451,7 +1441,7 @@
 
     <div class="dimensioncode_part">
         <div class="dimensioncode" width="100%" height="100%">
-            <!-- <img src="__IMAGES__/museum/gallery10/background.png" alt="Smiley face" width="100%"> -->
+             <img src="__IMAGES__/museum/gallery10/background.png" alt="Smiley face" width="100%"> 
         </div>
         <div class="dimensioncode2" width="100%" height="100%">
             <img src="__IMAGES__/museum/gallery10/codeMsg.png" alt="Smiley face" width="100%" height="100%">
@@ -1483,6 +1473,173 @@
 
 
 
+
+<!-- <audio class="background_source" id="player">
+<div class="distribution_part">
+    <div class="distribution" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery3/background.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="distribution2" align="center" width="100%" height="100%">
+        <img class="ring" src="__IMAGES__/museum/gallery3/ring0.gif" alt="Smiley face" width="100%" height="100%">
+    </div>	
+    <div class="distribution3" align="center" width="100%" height="100%">
+        <img class="hand" src="__IMAGES__/museum/gallery3/hand.png" alt="Smiley face" width="100%" height="100%">
+    </div>	
+</div>
+
+<div class="chinagermany_part">
+    <div class="chinagermany" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery8/background.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="chinagermany2" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery8/brand.png" alt="Smiley face" width="35%" height="90%">
+    </div>
+    <div class="chinagermany3" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery8/bicycle.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="chinagermany4" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery8/wheel1.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="chinagermany5" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery8/wheel2.png" alt="Smiley face" width="100%" height="100%">
+    </div>		
+    <audio class="background_source" id="player4">
+        <source src="__RESOURCE__/video/audio/showpart/bicycle.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<div class="intelmanufacture_part">
+    <div class="intelmanufacture" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery6/background.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="intelmanufacture2" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery6/brand.png" alt="Smiley face" width="35%" height="90%">
+    </div>
+    <div class="intelmanufacture3" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery6/light3.png" alt="Smiley face" width="40%" height="100%">
+    </div>
+    <div class="intelmanufacture4" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery6/product.png" alt="Smiley face" width="40%" height="100%">
+    </div>
+    <div class="intelmanufacture5" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery6/light2.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="intelmanufacture6" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery6/light1.png" alt="Smiley face" width="100%" height="100%">
+    </div>	
+    <audio class="background_source" id="player5">
+        <source src="__RESOURCE__/video/audio/showpart/manufacture.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<div class="electinfomation_part">
+    <div class="electinfomation" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery4/background.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="electinfomation2" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery4/brand.png" alt="Smiley face" width="35%" height="90%">
+    </div>
+    <div class="electinfomation3" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery4/light.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="electinfomation4" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery4/sound.png" alt="Smiley face" width="100%" height="100%">
+    </div>		
+    <div class="electinfomation5" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery4/leftnote.png" alt="Smiley face" width="100%" height="100%">
+    </div>		
+    <div class="electinfomation6" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery4/rightnote.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <audio class="background_source" id="player6">
+        <source src="__RESOURCE__/video/audio/showpart/electronic.mp3" type="audio/mpeg">
+    </audio>		
+</div>
+
+
+<div class="aeronautics_part">
+    <div class="aeronautics" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery5/background.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="aeronautics2" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery5/brand.png" alt="Smiley face" width="35%" height="90%">
+    </div>
+    <div class="aeronautics3" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery5/light.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="aeronautics4" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery5/satellite.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="aeronautics5" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery5/signalring.gif" alt="Smiley face" width="100%" height="100%">
+    </div>		
+    <audio class="background_source" id="player7">
+        <source src="__RESOURCE__/video/audio/showpart/spaceflight.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<div class="laserequipment_part">
+    <div class="laserequipment" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery7/background.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="laserequipment2" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery7/brand.png" alt="Smiley face" width="35%" height="90%">
+    </div>
+    <div class="laserequipment3" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery7/light2.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="laserequipment4" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery7/product.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="laserequipment5" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery7/light1.png" alt="Smiley face" width="100%" height="100%">
+    </div>	
+    <audio class="background_source" id="player8">
+        <source src="__RESOURCE__/video/audio/showpart/laser.mp3" type="audio/mpeg">
+    </audio>		
+</div>
+
+<div class="oceanindustry_part">
+    <div class="oceanindustry" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery9/background.png" alt="Smiley face" width="100%" height="100%">
+    </div>		
+    <div class="oceanindustry2" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery9/brand.png" alt="Smiley face" width="35%" height="90%">
+    </div>		
+    <div class="oceanindustry3" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery9/product.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <audio class="background_source" id="player9">
+        <source src="__RESOURCE__/video/audio/showpart/submarine.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<div class="dimensioncode_part">
+    <div class="dimensioncode" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery10/background.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="dimensioncode2" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery10/code.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="dimensioncode3" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery10/sharebottom.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="dimensioncode4" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery10/morebottom.png" alt="Smiley face" width="100%" height="100%">
+    </div>		
+    <div class="dimensioncode5" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery10/context2.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="dimensioncode6" width="100%" height="100%">
+        <img src="__IMAGES__/museum/gallery10/context1.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <audio class="background_source" id="player10">
+        <source src="__RESOURCE__/video/loveandhonest.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+
+</div>
 
 <!-- <audio class="background_source" id="player">
 <source src="__RESOURCE__/video/audio/background/background.mp3" type="audio/mpeg">
