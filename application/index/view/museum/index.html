@@ -5,639 +5,564 @@
 
     <script type="text/javascript" src="__JS__/museum/jquery.min.js"></script>
     <link href="__CSS__/museum/animate.css" rel="stylesheet" type="text/css" media="all" />
-    <script src="__JS__/jweixin-1.0.0.js"></script>
-    <title>是时候，对一个博览会动手了</title>
+    <title>HTML5 蓝墨科技公司代码 - 博物馆之家</title>
 
-<script>
-    //微信分享
-    function share() {
-        //微信配置
-        wx.config({$jssdk});
-        wx.ready(function() {
-            //分享到朋友圈
-            wx.onMenuShareTimeline({
-                title: '{$title}', // 分享标题
-                link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                imgUrl: '{$imgUrl}', // 分享图标
-                success: function() {
-                    // 用户确认分享后执行的回调函数
-                },
-                cancel: function() {
-                    // 用户取消分享后执行的回调函数
-                }
+    <script>
+        $(function () {
+
+            $(".loading_part").click(function(){
+                var player1 = $("#player1")[0];
+                if (player1.paused)
+                    player1.play();
             });
-            //分享给朋友
-            wx.onMenuShareAppMessage({
-                title: '{$title}', // 分享标题
-                desc: '{$desc}', // 分享描述
-                link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                imgUrl: '{$imgUrl}', // 分享图标
-                success: function() {
-                    // 用户确认分享后执行的回调函数
-                },
-                cancel: function() {
-                    // 用户取消分享后执行的回调函数
-                }
+            $(".loading_part").css("width",$(window).height());
+            $(".loading_part").css("height",$(window).width());
+            $(".loading_part").css("position","relative");
+            $(".loading_part").css("left",($(".loading_part").height()-$(".loading_part").width())/2);
+            $(".loading_part").css("top",-($(".loading_part").height()-$(".loading_part").width())/2);
+            $(".loading_part").addClass("ture90deg");
+
+            $(".loading_part .loading").css("position","absolute");
+            $(".loading_part .loading").css("left",0);
+            $(".loading_part .loading").css("top",0);
+            $(".loading_part .loading").css("height",$(window).width());
+            //$(".loading_part .loading").css("width",$(window).height());
+
+            $(".loading_part .loading2").css("position","absolute");
+            $(".loading_part .loading2").css("left",0);
+            $(".loading_part .loading2").css("top",0);
+            $(".loading_part .loading2").css("height",$(window).width()*23/100);
+            $(".loading_part .loading2").css("width",$(window).height());
+
+            $(".loading_part .loading3").css("position","absolute");
+            $(".loading_part .loading3").css("left",0);
+            $(".loading_part .loading3").css("top",$(window).width()*4/5);
+            $(".loading_part .loading3").css("height",$(window).width()*23/100);
+            $(".loading_part .loading3").css("width",$(window).height());
+
+            $(".loading_part .loading4").css("position","absolute");
+            $(".loading_part .loading4").css("left",0);
+            $(".loading_part .loading4").css("top",$(window).width()/3);
+            $(".loading_part .loading4").css("height",$(window).width()/3);
+            $(".loading_part .loading4").css("width",$(window).height());
+            $(".loading_part .loading4").css({'background-size':$(window).height()+'px '+($(window).width()/3)+'px'});
+            $(".loading_part .loading5").css("position","absolute");
+            $(".loading_part .loading5").css("left",0);
+            $(".loading_part .loading5").css("top",$(window).width()/3);
+            $(".loading_part .loading5").css("height",$(window).width()/3);
+            $(".loading_part .loading5").css("width",$(window).height());
+            $(".loading_part .loading5").css({'background-size':$(window).height()+'px '+($(window).width()/3)+'px'});
+            document.getElementById("loading_part").addEventListener("webkitAnimationStart", function(){
+                $('.loading_part').trigger("click");
             });
-            //分享到QQ
-            wx.onMenuShareQQ({
-                title: '{$title}', // 分享标题
-                desc: '{$desc}', // 分享描述
-                link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                imgUrl: '{$imgUrl}', // 分享图标
-                success: function() {
-                    // 用户确认分享后执行的回调函数
-                },
-                cancel: function() {
-                    // 用户取消分享后执行的回调函数
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                    network = e.err_msg.split(":")[1];  //结果在这里
+                    var player1 = $("#player1")[0];
+                    if (player1.paused)
+                        player1.play();
+                });
+            }, false);
+            document.getElementById("loading_part").addEventListener("webkitAnimationEnd", function(){
+                $(".loading_part").hide();
+                $(".opendoor_part").css("display","block");
+
+                var player1 = $("#player1")[0];
+                player1.pause();
+
+                var player2 = $("#player")[0];
+                if (player2.paused) {
+                    player2.play();
+                }else{
+                    player2.pause();
                 }
+
+                setTimeout("$('.gallery').css('display','block');",2000);
+                setTimeout("opendoor();",2000);
+
+
             });
-            //分享到腾讯微博
-            wx.onMenuShareWeibo({
-                title: '{$title}', // 分享标题
-                desc: '{$desc}', // 分享描述
-                link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                imgUrl: '{$imgUrl}', // 分享图标
-                success: function() {
-                    // 用户确认分享后执行的回调函数
-                },
-                cancel: function() {
-                    // 用户取消分享后执行的回调函数
-                }
+
+            $(".loading_part .loading6").css("position","absolute");
+            $(".loading_part .loading6").css("left",-$(window).width()/8-20);
+            $(".loading_part .loading6").css("top",($(window).width()*52/100-$(window).width()/8)+20);
+            $(".loading_part .loading6").css("height",$(window).width()/4);
+            $(".loading_part .loading6").css("width",$(window).width()/4);
+
+            $(".loading_part .loading6").animate({left:($(window).height()/3-20)+"px"},3050,"linear");
+            $(".loading_part .loading6").animate({left:($(window).height()*37/100-20)+"px",top:($(window).width()*41/100-$(".loading_part .loading6").width()/2+20)+"px"},300,"linear");
+            $(".loading_part .loading6").animate({left:($(window).height()*66/100-20)+"px"},2350,"linear");
+            $(".loading_part .loading6").animate({left:($(window).height()*69/100-20)+"px",top:($(window).width()*54/100-$(".loading_part .loading6").width()/2+20)+"px"},250,"linear");
+            $(".loading_part .loading6").animate({left:($(window).height()*88/100-20)+"px"},1800,"linear");
+
+            $(".loading_part .loading7").css("position","absolute");
+            $(".loading_part .loading7").css("left",-$(window).width()/10);
+            $(".loading_part .loading7").css("top",$(window).width()*52/100);
+            $(".loading_part .loading7").css("height",$(window).width()/4);
+            $(".loading_part .loading7").css("width",$(window).width()/4);
+
+            $(".loading_part .loading7").animate({left:($(window).height()/3)+"px"},3050,"linear");
+            $(".loading_part .loading7").animate({left:($(window).height()*37/100)+"px",top:($(window).width()*41/100)+"px"},300,"linear");
+            $(".loading_part .loading7").animate({left:($(window).height()*66/100)+"px"},2350,"linear");
+            $(".loading_part .loading7").animate({left:($(window).height()*69/100)+"px",top:($(window).width()*54/100)+"px"},250,"linear");
+            $(".loading_part .loading7").animate({left:($(window).height()*88/100)+"px"},1800,"linear");
+
+            $(".opendoor_part").css("width",$(window).height());
+            $(".opendoor_part").css("height",$(window).width());
+            $(".opendoor_part").css("z-index",661);
+            $(".opendoor_part").css("position","relative");
+            $(".opendoor_part").css("left",($(".opendoor_part").height()-$(".opendoor_part").width())/2);
+            $(".opendoor_part").css("top",-($(".opendoor_part").height()-$(".opendoor_part").width())/2);
+            $(".opendoor_part").addClass("ture90deg");
+
+            $(".opendoor_part .background_door").css("position","absolute");
+            $(".opendoor_part .background_door").css("left",0);
+            $(".opendoor_part .background_door").css("top",0);
+            $(".opendoor_part .background_door").css("height",$(window).width());
+
+            $(".opendoor_part .brand_door").css("position","absolute");
+            $(".opendoor_part .brand_door").css("left",0);
+            $(".opendoor_part .brand_door").css("top",0);
+            $(".opendoor_part .brand_door").css("width",$(window).height());
+            $(".opendoor_part .brand_door").css("height","35%");
+
+            $(".opendoor_part .title_door").css("position","absolute");
+            $(".opendoor_part .title_door").css("left",0);
+            $(".opendoor_part .title_door").css("top",$(window).width()*2/3);
+            $(".opendoor_part .title_door").css("width",$(window).height());
+            $(".opendoor_part .title_door").css("height","27%");
+
+            $(".opendoor_part .left_door").css("position","absolute");
+            $(".opendoor_part .left_door").css("left",0);
+            $(".opendoor_part .left_door").css("top",0);
+            $(".opendoor_part .left_door").css("width",$(window).height()*11/20);
+            $(".opendoor_part .left_door").css("height",$(window).width());
+
+            $(".opendoor_part .right_door").css("position","absolute");
+            $(".opendoor_part .right_door").css("left",$(window).height()*9/20);
+            $(".opendoor_part .right_door").css("top",0);
+            $(".opendoor_part .right_door").css("width",$(window).height()*11/20);
+            $(".opendoor_part .right_door").css("height",$(window).width());
+
+            $(".opendoor_part").click(function(){
+
             });
-            //分享到QQ空间
-            wx.onMenuShareQZone({
-                title: '{$title}', // 分享标题
-                desc: '{$desc}', // 分享描述
-                link: '{$link}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                imgUrl: '{$imgUrl}', // 分享图标
-                success: function() {
-                    // 用户确认分享后执行的回调函数
-                },
-                cancel: function() {
-                    // 用户取消分享后执行的回调函数
-                }
-            });
-        });
-    };
-    share();
-    $(function () {
-        var player1 = document.getElementById("player1");
-        if (player1.paused)
-        player1.play();
-        
-        $(".loading_part").css("width",$(window).height());
-        $(".loading_part").css("height",$(window).width()); 
-        $(".loading_part").css("position","relative");
-        $(".loading_part").css("left",($(".loading_part").height()-$(".loading_part").width())/2);
-        $(".loading_part").css("top",-($(".loading_part").height()-$(".loading_part").width())/2);
-        $(".loading_part").addClass("ture90deg");
-        
-        $(".loading_part .loading").css("position","absolute");
-        $(".loading_part .loading").css("left",0);
-        $(".loading_part .loading").css("top",0);
-        $(".loading_part .loading").css("height",$(window).width());
-        $(".loading_part .loading").css("width",$(window).height());
-        
-        $(".loading_part .loading2").css("position","absolute");
-        $(".loading_part .loading2").css("left",0);
-        $(".loading_part .loading2").css("top",0);
-        $(".loading_part .loading2").css("height",$(window).width()/5);
-        $(".loading_part .loading2").css("width",$(window).height());
-        
-        $(".loading_part .loading3").css("position","absolute");
-        $(".loading_part .loading3").css("left",0);
-        $(".loading_part .loading3").css("top",$(window).width()*4/5);
-        $(".loading_part .loading3").css("height",$(window).width()/5);
-        $(".loading_part .loading3").css("width",$(window).height());
-        
-        $(".loading_part .loading4").css("position","absolute");
-        $(".loading_part .loading4").css("left",0);
-        $(".loading_part .loading4").css("top",$(window).width()/3);
-        $(".loading_part .loading4").css("height",$(window).width()/3);
-        $(".loading_part .loading4").css("width",$(window).height());
-        $(".loading_part .loading4").css({'background-size':$(window).height()+'px '+($(window).width()/3)+'px'});  
-        $(".loading_part .loading5").css("position","absolute");
-        $(".loading_part .loading5").css("left",0);
-        $(".loading_part .loading5").css("top",$(window).width()/3);
-        $(".loading_part .loading5").css("height",$(window).width()/3);
-        $(".loading_part .loading5").css("width",$(window).height());
-        $(".loading_part .loading5").css({'background-size':$(window).height()+'px '+($(window).width()/3)+'px'});  
-        
-        document.getElementById("loading_part").addEventListener("webkitAnimationEnd", function(){
-        $(".loading_part").hide();
-        $(".opendoor_part").css("display","block");
-        
-        var player1 = document.getElementById("player1");
-        player1.pause();
-        
-        var player2 = document.getElementById("player");
-        if (player2.paused) {
-        player2.play();
-        }else{
-        player2.pause();
-        }
-            
-        setTimeout("$('.gallery').css('display','block');",2000);
-        setTimeout("opendoor();",2000);
-        
-            
-        }); 
-        
-        $(".loading_part .loading6").css("position","absolute");
-        $(".loading_part .loading6").css("left",-$(window).width()/8-20);
-        $(".loading_part .loading6").css("top",($(window).width()*52/100-$(window).width()/8)+20);
-        $(".loading_part .loading6").css("height",$(window).width()/4);
-        $(".loading_part .loading6").css("width",$(window).width()/4);
-        
-        $(".loading_part .loading6").animate({left:($(window).height()/3-20)+"px"},3050,"linear");
-        $(".loading_part .loading6").animate({left:($(window).height()*37/100-20)+"px",top:($(window).width()*41/100-$(".loading_part .loading6").width()/2+20)+"px"},300,"linear");    
-        $(".loading_part .loading6").animate({left:($(window).height()*66/100-20)+"px"},2350,"linear");
-        $(".loading_part .loading6").animate({left:($(window).height()*69/100-20)+"px",top:($(window).width()*54/100-$(".loading_part .loading6").width()/2+20)+"px"},250,"linear");    
-        $(".loading_part .loading6").animate({left:($(window).height()*88/100-20)+"px"},1800,"linear");
-        
-        $(".loading_part .loading7").css("position","absolute");
-        $(".loading_part .loading7").css("left",-$(window).width()/10);
-        $(".loading_part .loading7").css("top",$(window).width()*52/100);
-        $(".loading_part .loading7").css("height",$(window).width()/4);
-        $(".loading_part .loading7").css("width",$(window).width()/4);
-        
-        $(".loading_part .loading7").animate({left:($(window).height()/3)+"px"},3050,"linear");
-        $(".loading_part .loading7").animate({left:($(window).height()*37/100)+"px",top:($(window).width()*41/100)+"px"},300,"linear"); 
-        $(".loading_part .loading7").animate({left:($(window).height()*66/100)+"px"},2350,"linear");
-        $(".loading_part .loading7").animate({left:($(window).height()*69/100)+"px",top:($(window).width()*54/100)+"px"},250,"linear"); 
-        $(".loading_part .loading7").animate({left:($(window).height()*88/100)+"px"},1800,"linear");
-        
-        $(".opendoor_part").css("width",$(window).height());
-        $(".opendoor_part").css("height",$(window).width());
-        $(".opendoor_part").css("z-index",661); 
-        $(".opendoor_part").css("position","relative");
-        $(".opendoor_part").css("left",($(".opendoor_part").height()-$(".opendoor_part").width())/2);
-        $(".opendoor_part").css("top",-($(".opendoor_part").height()-$(".opendoor_part").width())/2);
-        $(".opendoor_part").addClass("ture90deg");
-            
-        $(".opendoor_part .background_door").css("position","absolute");
-        $(".opendoor_part .background_door").css("left",0);
-        $(".opendoor_part .background_door").css("top",0);
-        $(".opendoor_part .background_door").css("height",$(window).width());
-        $(".opendoor_part .background_door").css("width",$(window).height());
-        
-        $(".opendoor_part .brand_door").css("position","absolute");
-        $(".opendoor_part .brand_door").css("left",0);
-        $(".opendoor_part .brand_door").css("top",0);   
-        $(".opendoor_part .brand_door").css("width",$(window).height());
-        $(".opendoor_part .brand_door").css("height","25%");    
-        
-        $(".opendoor_part .title_door").css("position","absolute");
-        $(".opendoor_part .title_door").css("left",0);
-        $(".opendoor_part .title_door").css("top",$(window).width()*2/3);   
-        $(".opendoor_part .title_door").css("width",$(window).height());
-        $(".opendoor_part .title_door").css("height","25%");
-        
-        $(".opendoor_part .left_door").css("position","absolute");
-        $(".opendoor_part .left_door").css("left",0);
-        $(".opendoor_part .left_door").css("top",0);    
-        $(".opendoor_part .left_door").css("width",$(window).height()*11/20);
-        $(".opendoor_part .left_door").css("height",$(window).width());
-        
-        $(".opendoor_part .right_door").css("position","absolute");
-        $(".opendoor_part .right_door").css("left",$(window).height()*9/20);
-        $(".opendoor_part .right_door").css("top",0);   
-        $(".opendoor_part .right_door").css("width",$(window).height()*11/20);
-        $(".opendoor_part .right_door").css("height",$(window).width());
-        
-        $(".opendoor_part").click(function(){
-            
-        });
-        
-        
-        $(".gallery").css("width",$(window).width());
-        $(".gallery").css("position","absolute");
-        $(".gallery").css("left",0);
-        $(".gallery").css("top",0); 
-        $(".gallery").css("z-index",339);
-        
-        $(".gallery .distribution_part").css("height",$(window).width());
-        $(".gallery .distribution_part").css("width",$(window).height());   
-        $(".gallery .distribution_part").css("position","relative");
-        $(".gallery .distribution_part").css("left",($(".gallery .distribution_part").height()-$(".gallery .distribution_part").width())/2);
-        $(".gallery .distribution_part").css("top",-($(".gallery .distribution_part").height()-$(".gallery .distribution_part").width())/2);
-        $(".gallery .distribution_part").addClass("ture90deg");
-        
-        $(".gallery .distribution_part .distribution").css("position","absolute");
-        $(".gallery .distribution_part .distribution").css("left",0);
-        $(".gallery .distribution_part .distribution").css("top",0);
-        $(".gallery .distribution_part .distribution").css("height",$(window).width());
-        $(".gallery .distribution_part .distribution").css("width",$(window).height());
-        
-        $(".gallery .distribution_part .distribution2").css("position","absolute");
-        $(".gallery .distribution_part .distribution2").css("left",$(window).height()*80/100);
-        $(".gallery .distribution_part .distribution2").css("top",$(window).width()*40/100);    
-        $(".gallery .distribution_part .distribution2").css("width",$(window).width()/6);
-        $(".gallery .distribution_part .distribution2").css("height",$(window).width()/6);
-        
-        $(".gallery .distribution_part .distribution3").css("position","absolute");
-        $(".gallery .distribution_part .distribution3").css("left",$(window).height()*80/100+$(window).width()/20);
-        $(".gallery .distribution_part .distribution3").css("top",$(window).width()*40/100+$(window).width()/17+10);    
-        $(".gallery .distribution_part .distribution3").css("width",$(window).width()/6);
-        $(".gallery .distribution_part .distribution3").css("height",$(window).width()/6);
-        
-        $(".distribution_part").click(function(){
-            var e = window.event;
-            var space = $(window).width()/12;
-            $(".gallery .distribution_part .distribution2").css("display","block");
+
+
+            //$(".gallery").css("width",$(window).width());
+            $(".gallery").css("width",$(window).width());
+            $(".gallery").css("position","absolute");
+            $(".gallery").css("left",0);
+            $(".gallery").css("top",0);
+            $(".gallery").css("z-index",339);
+
+            $(".gallery .distribution_part").css("height",$(window).width());
+            $(".gallery .distribution_part").css("width",$(window).width()/0.56);
+            $(".gallery .distribution_part").css("position","relative");
+            $(".gallery .distribution_part").css("left",($(".gallery .distribution_part").height()-$(".gallery .distribution_part").width())/2);
+            $(".gallery .distribution_part").css("top",-($(".gallery .distribution_part").height()-$(".gallery .distribution_part").width())/2);
+            $(".gallery .distribution_part").addClass("ture90deg");
+
+            $(".gallery .distribution_part .distribution").css("position","absolute");
+            $(".gallery .distribution_part .distribution").css("left",0);
+            $(".gallery .distribution_part .distribution").css("top",0);
+            $(".gallery .distribution_part .distribution").css("height",$(window).width());
+
             $(".gallery .distribution_part .distribution2").css("position","absolute");
-            $(".gallery .distribution_part .distribution2").css("left",(e.pageY-space));
-            $(".gallery .distribution_part .distribution2").css("top",($(window).width()-e.pageX-space));
-            
-            $(".gallery .distribution_part .distribution3").css("display","block");
-            $(".gallery .distribution_part .distribution3").css("position","absolute");
-            $(".gallery .distribution_part .distribution3").css("left",(e.pageY-space/2-10));
-            $(".gallery .distribution_part .distribution3").css("top",($(window).width()-e.pageX-10));
-            $("html,body").animate({scrollTop:$(".gallery .chinagermany_part").offset().top},3000);
-        });
-        
-        $(".gallery .chinagermany_part").css("height",$(window).width());
-        $(".gallery .chinagermany_part").css("width",$(window).height());   
-        $(".gallery .chinagermany_part").css("position","relative");
-        $(".gallery .chinagermany_part").css("left",($(".gallery .chinagermany_part").height()-$(".gallery .chinagermany_part").width())/2);
-        $(".gallery .chinagermany_part").css("top",-($(".gallery .chinagermany_part").height()-$(".gallery .chinagermany_part").width())*3/2);
-        $(".gallery .chinagermany_part").addClass("ture90deg");
-        
-        $(".gallery .chinagermany_part .chinagermany").css("position","absolute");
-        $(".gallery .chinagermany_part .chinagermany").css("left",0);
-        $(".gallery .chinagermany_part .chinagermany").css("top",0);
-        $(".gallery .chinagermany_part .chinagermany").css("height",$(window).width());
-        $(".gallery .chinagermany_part .chinagermany").css("width",$(window).height());
-        $(".gallery .chinagermany_part .chinagermany2").css("position","absolute");
-        $(".gallery .chinagermany_part .chinagermany2").css("left",$(window).height()*12/100);
-        $(".gallery .chinagermany_part .chinagermany2").css("top",$(window).width()*80/100);    
-        $(".gallery .chinagermany_part .chinagermany2").css("width",$(window).height());
-        $(".gallery .chinagermany_part .chinagermany2").css("height","25%");
-        $(".gallery .chinagermany_part .chinagermany2").css("z-index","332");
-        $(".gallery .chinagermany_part .chinagermany3").css("position","absolute");
-        $(".gallery .chinagermany_part .chinagermany3").css("left",$(window).height()*56/100);
-        $(".gallery .chinagermany_part .chinagermany3").css("top",$(window).width()*56/100);    
-        $(".gallery .chinagermany_part .chinagermany3").css("width",$(window).height()*41/100);
-        $(".gallery .chinagermany_part .chinagermany3").css("height","40%");
-        $(".gallery .chinagermany_part .chinagermany3").css("z-index","334");
-        $(".gallery .chinagermany_part .chinagermany4").css("position","absolute");
-        $(".gallery .chinagermany_part .chinagermany4").css("left",$(window).height()*58/100);
-        $(".gallery .chinagermany_part .chinagermany4").css("top",$(window).width()*71/100);    
-        $(".gallery .chinagermany_part .chinagermany4").css("width",$(window).width()*22/100);
-        $(".gallery .chinagermany_part .chinagermany4").css("height",$(window).width()*22/100);
-        $(".gallery .chinagermany_part .chinagermany4").css("z-index","333");   
-        $(".gallery .chinagermany_part .chinagermany5").css("position","absolute");
-        $(".gallery .chinagermany_part .chinagermany5").css("left",$(window).height()*80/100);
-        $(".gallery .chinagermany_part .chinagermany5").css("top",$(window).width()*71/100);    
-        $(".gallery .chinagermany_part .chinagermany5").css("width",$(window).width()*22/100);
-        $(".gallery .chinagermany_part .chinagermany5").css("height",$(window).width()*22/100);
-        $(".gallery .chinagermany_part .chinagermany5").css("z-index","333");
-        
-        $(".gallery .intelmanufacture_part").css("height",$(window).width());
-        $(".gallery .intelmanufacture_part").css("width",$(window).height());   
-        $(".gallery .intelmanufacture_part").css("position","relative");
-        $(".gallery .intelmanufacture_part").css("left",($(".gallery .intelmanufacture_part").height()-$(".gallery .intelmanufacture_part").width())/2);
-        $(".gallery .intelmanufacture_part").css("top",-($(".gallery .intelmanufacture_part").height()-$(".gallery .intelmanufacture_part").width())*5/2);
-        $(".gallery .intelmanufacture_part").addClass("ture90deg");
-        
-        $(".gallery .intelmanufacture_part .intelmanufacture").css("position","absolute");
-        $(".gallery .intelmanufacture_part .intelmanufacture").css("left",0);
-        $(".gallery .intelmanufacture_part .intelmanufacture").css("top",0);
-        $(".gallery .intelmanufacture_part .intelmanufacture").css("height",$(window).width());
-        $(".gallery .intelmanufacture_part .intelmanufacture").css("width",$(window).height());
-        $(".gallery .intelmanufacture_part .intelmanufacture2").css("position","absolute");
-        $(".gallery .intelmanufacture_part .intelmanufacture2").css("left",0);
-        $(".gallery .intelmanufacture_part .intelmanufacture2").css("top",0);   
-        $(".gallery .intelmanufacture_part .intelmanufacture2").css("width",$(window).height());
-        $(".gallery .intelmanufacture_part .intelmanufacture2").css("height","25%");    
-        $(".gallery .intelmanufacture_part .intelmanufacture3").css("position","absolute");
-        $(".gallery .intelmanufacture_part .intelmanufacture3").css("left",0);
-        $(".gallery .intelmanufacture_part .intelmanufacture3").css("top",$(window).width()*25/100);    
-        $(".gallery .intelmanufacture_part .intelmanufacture3").css("width",$(window).height());
-        $(".gallery .intelmanufacture_part .intelmanufacture3").css("height","65%");    
-        $(".gallery .intelmanufacture_part .intelmanufacture4").css("position","absolute");
-        $(".gallery .intelmanufacture_part .intelmanufacture4").css("left",0);
-        $(".gallery .intelmanufacture_part .intelmanufacture4").css("top",$(window).width()*25/100);    
-        $(".gallery .intelmanufacture_part .intelmanufacture4").css("width",$(window).height());
-        $(".gallery .intelmanufacture_part .intelmanufacture4").css("height","65%");
-        
-        $(".gallery .intelmanufacture_part .intelmanufacture5").css("position","absolute");
-        $(".gallery .intelmanufacture_part .intelmanufacture5").css("left",$(window).height()*28/100);
-        $(".gallery .intelmanufacture_part .intelmanufacture5").css("top",$(window).width()*23/100);    
-        $(".gallery .intelmanufacture_part .intelmanufacture5").css("width",$(window).height()*28/100);
-        $(".gallery .intelmanufacture_part .intelmanufacture5").css("height",$(window).width()*48/100);
-        
-        $(".gallery .intelmanufacture_part .intelmanufacture6").css("position","absolute");
-        $(".gallery .intelmanufacture_part .intelmanufacture6").css("left",$(window).height()*28/100);
-        $(".gallery .intelmanufacture_part .intelmanufacture6").css("top",$(window).width()*23/100);    
-        $(".gallery .intelmanufacture_part .intelmanufacture6").css("width",$(window).height()*27/100);
-        $(".gallery .intelmanufacture_part .intelmanufacture6").css("height",$(window).width()*47/100);
-        
-        $(".gallery .electinfomation_part").css("height",$(window).width());
-        $(".gallery .electinfomation_part").css("width",$(window).height());    
-        $(".gallery .electinfomation_part").css("position","relative");
-        $(".gallery .electinfomation_part").css("left",($(".gallery .electinfomation_part").height()-$(".gallery .electinfomation_part").width())/2);
-        $(".gallery .electinfomation_part").css("top",-($(".gallery .electinfomation_part").height()-$(".gallery .electinfomation_part").width())*7/2);
-        $(".gallery .electinfomation_part").addClass("ture90deg");
-        
-        $(".gallery .electinfomation_part .electinfomation").css("position","absolute");
-        $(".gallery .electinfomation_part .electinfomation").css("left",0);
-        $(".gallery .electinfomation_part .electinfomation").css("top",0);
-        $(".gallery .electinfomation_part .electinfomation").css("height",$(window).width());
-        $(".gallery .electinfomation_part .electinfomation").css("width",$(window).height());
-        $(".gallery .electinfomation_part .electinfomation2").css("position","absolute");
-        $(".gallery .electinfomation_part .electinfomation2").css("left",0);
-        $(".gallery .electinfomation_part .electinfomation2").css("top",0); 
-        $(".gallery .electinfomation_part .electinfomation2").css("width",$(window).height());
-        $(".gallery .electinfomation_part .electinfomation2").css("height","25%");
-        $(".gallery .electinfomation_part .electinfomation3").css("position","absolute");
-        $(".gallery .electinfomation_part .electinfomation3").css("left",$(window).height()*68/100);
-        $(".gallery .electinfomation_part .electinfomation3").css("top",$(window).width()*70/100);
-        $(".gallery .electinfomation_part .electinfomation3").css("width",$(window).height()/11);
-        $(".gallery .electinfomation_part .electinfomation3").css("height",$(window).width()/4);
-        $(".gallery .electinfomation_part .electinfomation4").css("position","absolute");
-        $(".gallery .electinfomation_part .electinfomation4").css("left",$(window).height()*68/100);
-        $(".gallery .electinfomation_part .electinfomation4").css("top",$(window).width()*70/100);
-        $(".gallery .electinfomation_part .electinfomation4").css("width",$(window).height()/11);
-        $(".gallery .electinfomation_part .electinfomation4").css("height",$(window).width()/4);
-        
-        $(".gallery .electinfomation_part .electinfomation5").css("position","absolute");
-        $(".gallery .electinfomation_part .electinfomation5").css("left",$(window).height()*13/20);
-        $(".gallery .electinfomation_part .electinfomation5").css("top",$(window).width()*13/20);
-        $(".gallery .electinfomation_part .electinfomation5").css("width",$(window).width()/10);
-        $(".gallery .electinfomation_part .electinfomation5").css("height",$(window).width()/10);
-        $(".gallery .electinfomation_part .electinfomation6").css("position","absolute");
-        $(".gallery .electinfomation_part .electinfomation6").css("left",$(window).height()*15/20);
-        $(".gallery .electinfomation_part .electinfomation6").css("top",$(window).width()*14/20);
-        $(".gallery .electinfomation_part .electinfomation6").css("width",$(window).width()/10);
-        $(".gallery .electinfomation_part .electinfomation6").css("height",$(window).width()/10);
-        
-        $(".gallery .aeronautics_part").css("height",$(window).width());
-        $(".gallery .aeronautics_part").css("width",$(window).height());    
-        $(".gallery .aeronautics_part").css("position","relative");
-        $(".gallery .aeronautics_part").css("left",($(".gallery .aeronautics_part").height()-$(".gallery .aeronautics_part").width())/2);
-        $(".gallery .aeronautics_part").css("top",-($(".gallery .aeronautics_part").height()-$(".gallery .aeronautics_part").width())*9/2);
-        $(".gallery .aeronautics_part").addClass("ture90deg");
-        
-        $(".gallery .aeronautics_part .aeronautics").css("position","absolute");
-        $(".gallery .aeronautics_part .aeronautics").css("left",0);
-        $(".gallery .aeronautics_part .aeronautics").css("top",0);
-        $(".gallery .aeronautics_part .aeronautics").css("height",$(window).width());
-        $(".gallery .aeronautics_part .aeronautics").css("width",$(window).height());   
-        $(".gallery .aeronautics_part .aeronautics2").css("position","absolute");
-        $(".gallery .aeronautics_part .aeronautics2").css("left",$(window).height()/10);
-        $(".gallery .aeronautics_part .aeronautics2").css("top",$(window).width()*80/100);  
-        $(".gallery .aeronautics_part .aeronautics2").css("width",$(window).height());
-        $(".gallery .aeronautics_part .aeronautics2").css("height","25%");
-        $(".gallery .aeronautics_part .aeronautics2").css("z-index","332"); 
-        $(".gallery .aeronautics_part .aeronautics3").css("position","absolute");
-        $(".gallery .aeronautics_part .aeronautics3").css("left",$(window).height()*2/5);
-        $(".gallery .aeronautics_part .aeronautics3").css("top",$(window).width()/7);
-        $(".gallery .aeronautics_part .aeronautics3").css("width",$(window).width()*11/24);
-        $(".gallery .aeronautics_part .aeronautics3").css("height",$(window).width()/4);    
-        $(".gallery .aeronautics_part .aeronautics4").css("position","absolute");
-        $(".gallery .aeronautics_part .aeronautics4").css("left",$(window).height()*2/5);
-        $(".gallery .aeronautics_part .aeronautics4").css("top",$(window).width()/7);
-        $(".gallery .aeronautics_part .aeronautics4").css("width",$(window).width()*11/24);
-        $(".gallery .aeronautics_part .aeronautics4").css("height",$(window).width()/4);
-        $(".gallery .aeronautics_part .aeronautics5").css("position","absolute");
-        $(".gallery .aeronautics_part .aeronautics5").css("left",$(window).height()*2/5);
-        $(".gallery .aeronautics_part .aeronautics5").css("top",0);
-        $(".gallery .aeronautics_part .aeronautics5").css("width",$(window).width()/2);
-        $(".gallery .aeronautics_part .aeronautics5").css("height",$(window).width()/4);
-        
-        $(".gallery .laserequipment_part").css("height",$(window).width());
-        $(".gallery .laserequipment_part").css("width",$(window).height()); 
-        $(".gallery .laserequipment_part").css("position","relative");
-        $(".gallery .laserequipment_part").css("left",($(".gallery .laserequipment_part").height()-$(".gallery .laserequipment_part").width())/2);
-        $(".gallery .laserequipment_part").css("top",-($(".gallery .laserequipment_part").height()-$(".gallery .laserequipment_part").width())*11/2);
-        $(".gallery .laserequipment_part").addClass("ture90deg");
-        
-        $(".gallery .laserequipment_part .laserequipment").css("position","absolute");
-        $(".gallery .laserequipment_part .laserequipment").css("left",0);
-        $(".gallery .laserequipment_part .laserequipment").css("top",0);
-        $(".gallery .laserequipment_part .laserequipment").css("height",$(window).width());
-        $(".gallery .laserequipment_part .laserequipment").css("width",$(window).height());
-        $(".gallery .laserequipment_part .laserequipment2").css("position","absolute");
-        $(".gallery .laserequipment_part .laserequipment2").css("left",0);
-        $(".gallery .laserequipment_part .laserequipment2").css("top",0);   
-        $(".gallery .laserequipment_part .laserequipment2").css("width",$(window).height());
-        $(".gallery .laserequipment_part .laserequipment2").css("height","25%");
-        $(".gallery .laserequipment_part .laserequipment3").css("position","absolute");
-        $(".gallery .laserequipment_part .laserequipment3").css("left",$(window).height()*45/100);
-        $(".gallery .laserequipment_part .laserequipment3").css("top",$(window).width()*35/100);    
-        $(".gallery .laserequipment_part .laserequipment3").css("width",$(window).height()/3);
-        $(".gallery .laserequipment_part .laserequipment3").css("height",$(window).width()*6/10);
-        $(".gallery .laserequipment_part .laserequipment4").css("position","absolute");
-        $(".gallery .laserequipment_part .laserequipment4").css("left",$(window).height()*45/100);
-        $(".gallery .laserequipment_part .laserequipment4").css("top",$(window).width()*35/100);    
-        $(".gallery .laserequipment_part .laserequipment4").css("width",$(window).height()/3);
-        $(".gallery .laserequipment_part .laserequipment4").css("height",$(window).width()*6/10);
-        $(".gallery .laserequipment_part .laserequipment5").css("position","absolute");
-        $(".gallery .laserequipment_part .laserequipment5").css("left",$(window).height()*45/100);
-        $(".gallery .laserequipment_part .laserequipment5").css("top",$(window).width()*35/100);    
-        $(".gallery .laserequipment_part .laserequipment5").css("width",$(window).height()/3);
-        $(".gallery .laserequipment_part .laserequipment5").css("height",$(window).width()*6/10);
-        
-        $(".gallery .oceanindustry_part").css("height",$(window).width());
-        $(".gallery .oceanindustry_part").css("width",$(window).height());  
-        $(".gallery .oceanindustry_part").css("position","relative");
-        $(".gallery .oceanindustry_part").css("left",($(".gallery .oceanindustry_part").height()-$(".gallery .oceanindustry_part").width())/2);
-        $(".gallery .oceanindustry_part").css("top",-($(".gallery .oceanindustry_part").height()-$(".gallery .oceanindustry_part").width())*13/2);
-        $(".gallery .oceanindustry_part").addClass("ture90deg");
-        
-        $(".gallery .oceanindustry_part .oceanindustry").css("position","absolute");
-        $(".gallery .oceanindustry_part .oceanindustry").css("left",0);
-        $(".gallery .oceanindustry_part .oceanindustry").css("top",0);
-        $(".gallery .oceanindustry_part .oceanindustry").css("height",$(window).width());
-        $(".gallery .oceanindustry_part .oceanindustry").css("width",$(window).height());
-        $(".gallery .oceanindustry_part .oceanindustry2").css("position","absolute");
-        $(".gallery .oceanindustry_part .oceanindustry2").css("left",$(window).height()/10);
-        $(".gallery .oceanindustry_part .oceanindustry2").css("top",$(window).width()*80/100);  
-        $(".gallery .oceanindustry_part .oceanindustry2").css("width",$(window).height());
-        $(".gallery .oceanindustry_part .oceanindustry2").css("height","25%");
-        $(".gallery .oceanindustry_part .oceanindustry2").css("z-index","331"); 
-        $(".gallery .oceanindustry_part .oceanindustry3").css("position","absolute");
-        $(".gallery .oceanindustry_part .oceanindustry3").css("left",$(window).height()*55/100);
-        $(".gallery .oceanindustry_part .oceanindustry3").css("top",$(window).width()*32/100);  
-        $(".gallery .oceanindustry_part .oceanindustry3").css("width",$(window).height()/4);
-        $(".gallery .oceanindustry_part .oceanindustry3").css("height",$(window).width()*32/100);
-        
-        $(".gallery .dimensioncode_part").css("height",$(window).width());
-        $(".gallery .dimensioncode_part").css("width",$(window).height());  
-        $(".gallery .dimensioncode_part").css("position","relative");
-        $(".gallery .dimensioncode_part").css("left",($(".gallery .dimensioncode_part").height()-$(".gallery .dimensioncode_part").width())/2);
-        $(".gallery .dimensioncode_part").css("top",-($(".gallery .dimensioncode_part").height()-$(".gallery .dimensioncode_part").width())*15/2);
-        $(".gallery .dimensioncode_part").addClass("ture90deg");
-        
-        $(".gallery .dimensioncode_part .dimensioncode").css("position","absolute");
-        $(".gallery .dimensioncode_part .dimensioncode").css("left",0);
-        $(".gallery .dimensioncode_part .dimensioncode").css("top",0);
-        $(".gallery .dimensioncode_part .dimensioncode").css("height",$(window).width());
-        $(".gallery .dimensioncode_part .dimensioncode").css("width",$(window).height());
-        $(".gallery .dimensioncode_part .dimensioncode2").css("position","absolute");
-        $(".gallery .dimensioncode_part .dimensioncode2").css("left",$(window).height()*30/100);
-        $(".gallery .dimensioncode_part .dimensioncode2").css("top",$(window).width()/5);
-        $(".gallery .dimensioncode_part .dimensioncode2").css("height",$(window).width()/3);
-        $(".gallery .dimensioncode_part .dimensioncode2").css("width",$(window).width()/3); 
-        $(".gallery .dimensioncode_part .dimensioncode3").css("position","absolute");
-        $(".gallery .dimensioncode_part .dimensioncode3").css("left",$(window).height()*30/100);
-        $(".gallery .dimensioncode_part .dimensioncode3").css("top",$(window).width()*55/100);
-        $(".gallery .dimensioncode_part .dimensioncode3").css("height",$(window).width()/6);
-        $(".gallery .dimensioncode_part .dimensioncode3").css("width",$(window).width()/3);
-        $(".gallery .dimensioncode_part .dimensioncode3").click(function(){
-            $(".gallery .dimensioncode_part .dimensioncode3").attr("id","clickbutton");
-        }); 
-        $(".gallery .dimensioncode_part .dimensioncode4").css("position","absolute");
-        $(".gallery .dimensioncode_part .dimensioncode4").css("left",$(window).height()*30/100);
-        $(".gallery .dimensioncode_part .dimensioncode4").css("top",$(window).width()*70/100);
-        $(".gallery .dimensioncode_part .dimensioncode4").css("height",$(window).width()/6);
-        $(".gallery .dimensioncode_part .dimensioncode4").css("width",$(window).width()/3);
-        $(".gallery .dimensioncode_part .dimensioncode4").click(function(){
-            $(".gallery .dimensioncode_part .dimensioncode4").attr("id","clickbutton");
-        }); 
-        $(".gallery .dimensioncode_part .dimensioncode5").css("position","absolute");
-        $(".gallery .dimensioncode_part .dimensioncode5").css("left",$(window).height()*50/100);
-        $(".gallery .dimensioncode_part .dimensioncode5").css("top",$(window).width()/5);
-        $(".gallery .dimensioncode_part .dimensioncode5").css("height",$(window).width()/3);
-        $(".gallery .dimensioncode_part .dimensioncode5").css("width",$(window).height()/3);
-        $(".gallery .dimensioncode_part .dimensioncode6").css("position","absolute");
-        $(".gallery .dimensioncode_part .dimensioncode6").css("left",$(window).height()*50/100);
-        $(".gallery .dimensioncode_part .dimensioncode6").css("top",$(window).width()*55/100);
-        $(".gallery .dimensioncode_part .dimensioncode6").css("height",$(window).width()/3);
-        $(".gallery .dimensioncode_part .dimensioncode6").css("width",$(window).height()/3);
-        $(".gallery .dimensioncode_part .dimensioncode7").css("position","absolute");
-        $(".gallery .dimensioncode_part .dimensioncode7").css("left",$(window).height()*50/100);
-        $(".gallery .dimensioncode_part .dimensioncode7").css("top",$(window).width()*12/100);
-        $(".gallery .dimensioncode_part .dimensioncode7").css("height",$(window).width()/14);
-        $(".gallery .dimensioncode_part .dimensioncode7").css("width",$(window).height()/3);
-        $(".gallery .dimensioncode_part .dimensioncode7 p").css("font-size",$(window).width()/20);
-        
-        $(".gallery .dimensioncode_part .dimensioncode8").css("position","absolute");
-        $(".gallery .dimensioncode_part .dimensioncode8").css("left",$(window).height()*56/100);
-        $(".gallery .dimensioncode_part .dimensioncode8").css("top",$(window).width()*22/100);
-        $(".gallery .dimensioncode_part .dimensioncode8").css("height",$(window).width()/14);
-        $(".gallery .dimensioncode_part .dimensioncode8").css("width",$(window).height()/3);
-        $(".gallery .dimensioncode_part .dimensioncode8 p").css("font-size",$(window).width()/20);
-        $(window).scroll(function(event) {
-            var juantop = $(document).scrollTop();
-            var winheight = $(window).height();
-            var distribution = $(".gallery .distribution_part").offset().top;
-            var chinagermany = $(".gallery .chinagermany_part").offset().top;
-            var intelmanufacture = $(".gallery .intelmanufacture_part").offset().top;
-            var electinfomation = $(".gallery .electinfomation_part").offset().top;
-            var aeronautics = $(".gallery .aeronautics_part").offset().top;
-            var laserequipment = $(".gallery .laserequipment_part").offset().top;
-            var oceanindustry = $(".gallery .oceanindustry_part").offset().top;
-            var dimensioncode = $(".gallery .dimensioncode_part").offset().top;
-            
-            var num4=0;
-            var num5=0;
-            var num6=0;
-            var num7=0;
-            var num8=0;
-            var num9=0;
-            if((chinagermany<(juantop+winheight/2))&&((juantop+winheight/2)<intelmanufacture)){
-                var player4 = document.getElementById("player4");
-                if (player4.paused&&num4==0)
-                player4.play();
-                num4=1;
-            }else{
-                var player4 = document.getElementById("player4");
-                if (!player4.paused)
-                player4.pause();
-                num4=0;
-            }
-            
-            if((intelmanufacture<=(juantop+winheight/2))&&((juantop+winheight/2)<electinfomation)){
-                var player5 = document.getElementById("player5");
-                if (player5.paused&&num5==0)
-                player5.play();
-                num5=1;
-            }else{
-                var player5 = document.getElementById("player5");
-                if (!player5.paused)
-                player5.pause();
-                num5=0;
-            }
-            
-            if((electinfomation<=(juantop+winheight/2))&&((juantop+winheight/2)<aeronautics)){
-                
-                var player6 = document.getElementById("player6");
-                if (player6.paused&&num6==0)
-                player6.play();
-                num6=1;
-            }else{
-                
-                var player6 = document.getElementById("player6");
-                if (!player6.paused)
-                player6.pause();
-                num6=0;
-            }
-            
-            if((aeronautics<=(juantop+winheight/2))&&((juantop+winheight/2)<laserequipment)){
-                var player7 = document.getElementById("player7");
-                if (player7.paused&&num7==0)
-                player7.play();
-                num7=1;
-            }else{
-                var player7 = document.getElementById("player7");
-                if (!player7.paused)
-                player7.pause();
-                num7=0;
-            }
-            
-            if((laserequipment<=(juantop+winheight/2))&&((juantop+winheight/2)<oceanindustry)){
-                var player8 = document.getElementById("player8");
-                if (player8.paused&&num8==0)
-                player8.play();
-                num8=1;
-            }else{
-                var player8 = document.getElementById("player8");
-                if (!player8.paused)
-                player8.pause();
-                num8=0;
-            }
-            
-            if((oceanindustry<=(juantop+winheight/2))&&((juantop+winheight/2)<dimensioncode)){
-                var player9 = document.getElementById("player9");
-                if (player9.paused&&num9==0)
-                player9.play();
-                num9=1;
-            }else{
-                var player9 = document.getElementById("player9");
-                if (!player9.paused)
-                player9.pause();
-                num9=0;
-            }
-            
-            if((dimensioncode<=(juantop+winheight/2))&&((juantop+winheight/2)<(dimensioncode+winheight))){}else{}
-            
-        });
-        
-    });
+            $(".gallery .distribution_part .distribution2").css("left",$(window).width()*136/100);
+            $(".gallery .distribution_part .distribution2").css("top",$(window).width()*37/100);
+            $(".gallery .distribution_part .distribution2").css("width",$(window).width()*312/1080);
+            $(".gallery .distribution_part .distribution2").css("height",$(window).width()*284/1080);
 
-    function opendoor(){
-        $(".opendoor_part .left_door .door").attr("id","leftdoor");
-        $(".opendoor_part .right_door .door").attr("id","rightdoor");
-        $(".opendoor_part .title_door").hide();
-        $(".opendoor_part .brand_door").hide();
-        
-        document.getElementById("rightdoor").addEventListener("webkitAnimationEnd", function(){$(".opendoor_part .right_door .door").hide();$(".opendoor_part").css("display","none");
-        var player2 = $("#player").get(0);
-        if (player2.paused)
-        player2.play();
-        }); 
-        document.getElementById("leftdoor").addEventListener("webkitAnimationEnd", function(){$(".opendoor_part .left_door .door").hide();$(".opendoor_part").css("display","none");    
-        var player2 = $("#player").get(0);
-        if (player2.paused)
-        player2.play();
+            $(".gallery .distribution_part .distribution3").css("position","absolute");
+            $(".gallery .distribution_part .distribution3").css("left",$(window).width()*144/100);
+            $(".gallery .distribution_part .distribution3").css("top",$(window).width()*47/100);
+            $(".gallery .distribution_part .distribution3").css("width",$(window).width()*189/1080);
+            $(".gallery .distribution_part .distribution3").css("height",$(window).width()*198/1080);
+
+            $(".distribution_part").click(function(){
+                var e = window.event;
+                $("html,body").animate({scrollTop:$(".gallery .chinagermany_part").offset().top},3000);
+            });
+
+            $(".gallery .chinagermany_part").css("height",$(window).width());
+            $(".gallery .chinagermany_part").css("width",$(window).width()/0.56);
+            $(".gallery .chinagermany_part").css("position","relative");
+            $(".gallery .chinagermany_part").css("left",($(".gallery .chinagermany_part").height()-$(".gallery .chinagermany_part").width())/2);
+            $(".gallery .chinagermany_part").css("top",-($(".gallery .chinagermany_part").height()-$(".gallery .chinagermany_part").width())*3/2);
+            $(".gallery .chinagermany_part").addClass("ture90deg");
+
+            $(".gallery .chinagermany_part .chinagermany").css("position","absolute");
+            $(".gallery .chinagermany_part .chinagermany").css("left",0);
+            $(".gallery .chinagermany_part .chinagermany").css("top",0);
+            $(".gallery .chinagermany_part .chinagermany").css("height",$(window).width());
+            $(".gallery .chinagermany_part .chinagermany2").css("position","absolute");
+            $(".gallery .chinagermany_part .chinagermany2").css("left",$(window).height()*12/100);
+            $(".gallery .chinagermany_part .chinagermany2").css("top",$(window).width()*76/100);
+            $(".gallery .chinagermany_part .chinagermany2").css("width",$(window).width()*710/1080);
+            $(".gallery .chinagermany_part .chinagermany2").css("height",$(window).width()*311/1080);
+            $(".gallery .chinagermany_part .chinagermany2").css("z-index","332");
+            $(".gallery .chinagermany_part .chinagermany3").css("position","absolute");
+            $(".gallery .chinagermany_part .chinagermany3").css("left",$(window).height()*66/100);
+            $(".gallery .chinagermany_part .chinagermany3").css("top",$(window).width()*50/100);
+            $(".gallery .chinagermany_part .chinagermany3").css("width",$(window).width()*792/1080);
+            $(".gallery .chinagermany_part .chinagermany3").css("height",$(window).width()*573/1080);
+            $(".gallery .chinagermany_part .chinagermany3").css("z-index","334");
+            $(".gallery .chinagermany_part .chinagermany4").css("position","absolute");
+            $(".gallery .chinagermany_part .chinagermany4").css("left",$(window).width()*99/100);
+            $(".gallery .chinagermany_part .chinagermany4").css("top",$(window).width()*70/100);
+            $(".gallery .chinagermany_part .chinagermany4").css("width",$(window).width()*275/1080);
+            $(".gallery .chinagermany_part .chinagermany4").css("height",$(window).width()*292/1080);
+            $(".gallery .chinagermany_part .chinagermany4").css("z-index","333");
+            $(".gallery .chinagermany_part .chinagermany5").css("position","absolute");
+            $(".gallery .chinagermany_part .chinagermany5").css("left",$(window).width()*138/100);
+            $(".gallery .chinagermany_part .chinagermany5").css("top",$(window).width()*70/100);
+            $(".gallery .chinagermany_part .chinagermany5").css("width",$(window).width()*295/1080);
+            $(".gallery .chinagermany_part .chinagermany5").css("height",$(window).width()*312/1080);
+            $(".gallery .chinagermany_part .chinagermany5").css("z-index","333");
+
+            $(".gallery .intelmanufacture_part").css("height",$(window).width());
+            $(".gallery .intelmanufacture_part").css("width",$(window).width()/0.56);
+            $(".gallery .intelmanufacture_part").css("position","relative");
+            $(".gallery .intelmanufacture_part").css("left",($(".gallery .intelmanufacture_part").height()-$(".gallery .intelmanufacture_part").width())/2);
+            $(".gallery .intelmanufacture_part").css("top",-($(".gallery .intelmanufacture_part").height()-$(".gallery .intelmanufacture_part").width())*5/2);
+            $(".gallery .intelmanufacture_part").addClass("ture90deg");
+
+            $(".gallery .intelmanufacture_part .intelmanufacture").css("position","absolute");
+            $(".gallery .intelmanufacture_part .intelmanufacture").css("left",0);
+            $(".gallery .intelmanufacture_part .intelmanufacture").css("top",0);
+            $(".gallery .intelmanufacture_part .intelmanufacture").css("height",$(window).width());
+            $(".gallery .intelmanufacture_part .intelmanufacture2").css("position","absolute");
+            $(".gallery .intelmanufacture_part .intelmanufacture2").css("left",(($(window).width()/0.56)-($(window).width()*680/1080))/2);
+            $(".gallery .intelmanufacture_part .intelmanufacture2").css("top",0);
+            $(".gallery .intelmanufacture_part .intelmanufacture2").css("width",$(window).width()*680/1080);
+            $(".gallery .intelmanufacture_part .intelmanufacture2").css("height",$(window).width()*291/1080);
+            $(".gallery .intelmanufacture_part .intelmanufacture3").css("position","absolute");
+            $(".gallery .intelmanufacture_part .intelmanufacture3").css("left",(($(window).width()/0.56)-($(window).width()*807/1080))/2);
+            $(".gallery .intelmanufacture_part .intelmanufacture3").css("top",$(window).width()*21/100);
+            $(".gallery .intelmanufacture_part .intelmanufacture3").css("width",$(window).width()*807/1080);
+            $(".gallery .intelmanufacture_part .intelmanufacture3").css("height",$(window).width()*774/1080);
+            $(".gallery .intelmanufacture_part .intelmanufacture4").css("position","absolute");
+            $(".gallery .intelmanufacture_part .intelmanufacture4").css("left",(($(window).width()/0.56)-($(window).width()*807/1080))/2);
+            $(".gallery .intelmanufacture_part .intelmanufacture4").css("top",$(window).width()*21/100);
+            $(".gallery .intelmanufacture_part .intelmanufacture4").css("width",$(window).width()*807/1080);
+            $(".gallery .intelmanufacture_part .intelmanufacture4").css("height",$(window).width()*774/1080);
+
+            $(".gallery .intelmanufacture_part .intelmanufacture5").css("position","absolute");
+            $(".gallery .intelmanufacture_part .intelmanufacture5").css("left",(($(window).width()/0.56)-($(window).width()*807/1080))/2);
+            $(".gallery .intelmanufacture_part .intelmanufacture5").css("top",($(window).width()*21/100)+5);
+            $(".gallery .intelmanufacture_part .intelmanufacture5").css("width",$(window).width()*466/1080);
+            $(".gallery .intelmanufacture_part .intelmanufacture5").css("height",$(window).width()*486/1080);
+
+            $(".gallery .intelmanufacture_part .intelmanufacture6").css("position","absolute");
+            $(".gallery .intelmanufacture_part .intelmanufacture6").css("left",(($(window).width()/0.56)-($(window).width()*807/1080))/2);
+            $(".gallery .intelmanufacture_part .intelmanufacture6").css("top",($(window).width()*21/100)+5);
+            $(".gallery .intelmanufacture_part .intelmanufacture6").css("width",$(window).width()*466/1080);
+            $(".gallery .intelmanufacture_part .intelmanufacture6").css("height",$(window).width()*486/1080);
+
+            $(".gallery .electinfomation_part").css("height",$(window).width());
+            $(".gallery .electinfomation_part").css("width",$(window).width()/0.56);
+            $(".gallery .electinfomation_part").css("position","relative");
+            $(".gallery .electinfomation_part").css("left",($(".gallery .electinfomation_part").height()-$(".gallery .electinfomation_part").width())/2);
+            $(".gallery .electinfomation_part").css("top",-($(".gallery .electinfomation_part").height()-$(".gallery .electinfomation_part").width())*7/2);
+            $(".gallery .electinfomation_part").addClass("ture90deg");
+
+            $(".gallery .electinfomation_part .electinfomation").css("position","absolute");
+            $(".gallery .electinfomation_part .electinfomation").css("left",0);
+            $(".gallery .electinfomation_part .electinfomation").css("top",0);
+            $(".gallery .electinfomation_part .electinfomation").css("height",$(window).width());
+            $(".gallery .electinfomation_part .electinfomation2").css("position","absolute");
+            $(".gallery .electinfomation_part .electinfomation2").css("left",0);
+            $(".gallery .electinfomation_part .electinfomation2").css("top",0);
+            $(".gallery .electinfomation_part .electinfomation2").css("width",$(window).height());
+            $(".gallery .electinfomation_part .electinfomation2").css("height","25%");
+            $(".gallery .electinfomation_part .electinfomation3").css("position","absolute");
+            $(".gallery .electinfomation_part .electinfomation3").css("left",$(window).height()*68/100);
+            $(".gallery .electinfomation_part .electinfomation3").css("top",$(window).width()*70/100);
+            $(".gallery .electinfomation_part .electinfomation3").css("width",$(window).height()/11);
+            $(".gallery .electinfomation_part .electinfomation3").css("height",$(window).width()/4);
+            $(".gallery .electinfomation_part .electinfomation4").css("position","absolute");
+            $(".gallery .electinfomation_part .electinfomation4").css("left",$(window).height()*68/100);
+            $(".gallery .electinfomation_part .electinfomation4").css("top",$(window).width()*70/100);
+            $(".gallery .electinfomation_part .electinfomation4").css("width",$(window).height()/11);
+            $(".gallery .electinfomation_part .electinfomation4").css("height",$(window).width()/4);
+
+            $(".gallery .electinfomation_part .electinfomation5").css("position","absolute");
+            $(".gallery .electinfomation_part .electinfomation5").css("left",$(window).height()*13/20);
+            $(".gallery .electinfomation_part .electinfomation5").css("top",$(window).width()*13/20);
+            $(".gallery .electinfomation_part .electinfomation5").css("width",$(window).width()/10);
+            $(".gallery .electinfomation_part .electinfomation5").css("height",$(window).width()/10);
+            $(".gallery .electinfomation_part .electinfomation6").css("position","absolute");
+            $(".gallery .electinfomation_part .electinfomation6").css("left",$(window).height()*15/20);
+            $(".gallery .electinfomation_part .electinfomation6").css("top",$(window).width()*14/20);
+            $(".gallery .electinfomation_part .electinfomation6").css("width",$(window).width()/10);
+            $(".gallery .electinfomation_part .electinfomation6").css("height",$(window).width()/10);
+
+            $(".gallery .aeronautics_part").css("height",$(window).width());
+            $(".gallery .aeronautics_part").css("width",$(window).width()/0.56);
+            $(".gallery .aeronautics_part").css("position","relative");
+            $(".gallery .aeronautics_part").css("left",($(".gallery .aeronautics_part").height()-$(".gallery .aeronautics_part").width())/2);
+            $(".gallery .aeronautics_part").css("top",-($(".gallery .aeronautics_part").height()-$(".gallery .aeronautics_part").width())*9/2);
+            $(".gallery .aeronautics_part").addClass("ture90deg");
+
+            $(".gallery .aeronautics_part .aeronautics").css("position","absolute");
+            $(".gallery .aeronautics_part .aeronautics").css("left",0);
+            $(".gallery .aeronautics_part .aeronautics").css("top",0);
+            $(".gallery .aeronautics_part .aeronautics").css("height",$(window).width());
+            $(".gallery .aeronautics_part .aeronautics2").css("position","absolute");
+            $(".gallery .aeronautics_part .aeronautics2").css("left",$(window).height()/10);
+            $(".gallery .aeronautics_part .aeronautics2").css("top",$(window).width()*80/100);
+            $(".gallery .aeronautics_part .aeronautics2").css("width",$(window).height());
+            $(".gallery .aeronautics_part .aeronautics2").css("height","25%");
+            $(".gallery .aeronautics_part .aeronautics2").css("z-index","332");
+            $(".gallery .aeronautics_part .aeronautics3").css("position","absolute");
+            $(".gallery .aeronautics_part .aeronautics3").css("left",$(window).height()*2/5);
+            $(".gallery .aeronautics_part .aeronautics3").css("top",$(window).width()/7);
+            $(".gallery .aeronautics_part .aeronautics3").css("width",$(window).width()*11/24);
+            $(".gallery .aeronautics_part .aeronautics3").css("height",$(window).width()/4);
+            $(".gallery .aeronautics_part .aeronautics4").css("position","absolute");
+            $(".gallery .aeronautics_part .aeronautics4").css("left",$(window).height()*2/5);
+            $(".gallery .aeronautics_part .aeronautics4").css("top",$(window).width()/7);
+            $(".gallery .aeronautics_part .aeronautics4").css("width",$(window).width()*11/24);
+            $(".gallery .aeronautics_part .aeronautics4").css("height",$(window).width()/4);
+            $(".gallery .aeronautics_part .aeronautics5").css("position","absolute");
+            $(".gallery .aeronautics_part .aeronautics5").css("left",$(window).height()*2/5);
+            $(".gallery .aeronautics_part .aeronautics5").css("top",0);
+            $(".gallery .aeronautics_part .aeronautics5").css("width",$(window).width()/2);
+            $(".gallery .aeronautics_part .aeronautics5").css("height",$(window).width()/4);
+
+            $(".gallery .laserequipment_part").css("height",$(window).width());
+            $(".gallery .laserequipment_part").css("width",$(window).width()/0.56);
+            $(".gallery .laserequipment_part").css("position","relative");
+            $(".gallery .laserequipment_part").css("left",($(".gallery .laserequipment_part").height()-$(".gallery .laserequipment_part").width())/2);
+            $(".gallery .laserequipment_part").css("top",-($(".gallery .laserequipment_part").height()-$(".gallery .laserequipment_part").width())*11/2);
+            $(".gallery .laserequipment_part").addClass("ture90deg");
+
+            $(".gallery .laserequipment_part .laserequipment").css("position","absolute");
+            $(".gallery .laserequipment_part .laserequipment").css("left",0);
+            $(".gallery .laserequipment_part .laserequipment").css("top",0);
+            $(".gallery .laserequipment_part .laserequipment").css("height",$(window).width());
+            $(".gallery .laserequipment_part .laserequipment2").css("position","absolute");
+            $(".gallery .laserequipment_part .laserequipment2").css("left",0);
+            $(".gallery .laserequipment_part .laserequipment2").css("top",0);
+            $(".gallery .laserequipment_part .laserequipment2").css("width",$(window).height());
+            $(".gallery .laserequipment_part .laserequipment2").css("height","25%");
+            $(".gallery .laserequipment_part .laserequipment3").css("position","absolute");
+            $(".gallery .laserequipment_part .laserequipment3").css("left",$(window).height()*45/100);
+            $(".gallery .laserequipment_part .laserequipment3").css("top",$(window).width()*35/100);
+            $(".gallery .laserequipment_part .laserequipment3").css("width",$(window).height()/3);
+            $(".gallery .laserequipment_part .laserequipment3").css("height",$(window).width()*6/10);
+            $(".gallery .laserequipment_part .laserequipment4").css("position","absolute");
+            $(".gallery .laserequipment_part .laserequipment4").css("left",$(window).height()*45/100);
+            $(".gallery .laserequipment_part .laserequipment4").css("top",$(window).width()*35/100);
+            $(".gallery .laserequipment_part .laserequipment4").css("width",$(window).height()/3);
+            $(".gallery .laserequipment_part .laserequipment4").css("height",$(window).width()*6/10);
+            $(".gallery .laserequipment_part .laserequipment5").css("position","absolute");
+            $(".gallery .laserequipment_part .laserequipment5").css("left",$(window).height()*45/100);
+            $(".gallery .laserequipment_part .laserequipment5").css("top",$(window).width()*35/100);
+            $(".gallery .laserequipment_part .laserequipment5").css("width",$(window).height()/3);
+            $(".gallery .laserequipment_part .laserequipment5").css("height",$(window).width()*6/10);
+
+            $(".gallery .oceanindustry_part").css("height",$(window).width());
+            $(".gallery .oceanindustry_part").css("width",$(window).width()/0.56);
+            $(".gallery .oceanindustry_part").css("position","relative");
+            $(".gallery .oceanindustry_part").css("left",($(".gallery .oceanindustry_part").height()-$(".gallery .oceanindustry_part").width())/2);
+            $(".gallery .oceanindustry_part").css("top",-($(".gallery .oceanindustry_part").height()-$(".gallery .oceanindustry_part").width())*13/2);
+            $(".gallery .oceanindustry_part").addClass("ture90deg");
+
+            $(".gallery .oceanindustry_part .oceanindustry").css("position","absolute");
+            $(".gallery .oceanindustry_part .oceanindustry").css("left",0);
+            $(".gallery .oceanindustry_part .oceanindustry").css("top",0);
+            $(".gallery .oceanindustry_part .oceanindustry").css("height",$(window).width());
+            $(".gallery .oceanindustry_part .oceanindustry2").css("position","absolute");
+            $(".gallery .oceanindustry_part .oceanindustry2").css("left",0);
+            $(".gallery .oceanindustry_part .oceanindustry2").css("top",0);
+            $(".gallery .oceanindustry_part .oceanindustry2").css("height",$(window).width());
+            $(".gallery .oceanindustry_part .oceanindustry3").css("position","absolute");
+            $(".gallery .oceanindustry_part .oceanindustry3").css("left",$(window).width()*35/100);
+            $(".gallery .oceanindustry_part .oceanindustry3").css("top",$(window).width()*7/100);
+            $(".gallery .oceanindustry_part .oceanindustry3").css("width",$(window).width()*712/1080);
+            $(".gallery .oceanindustry_part .oceanindustry3").css("height",$(window).width()*564/1080);
+            setTimeout("oceananimate()", 100);
+
+            $(".gallery .dimensioncode_part").css("height",$(window).width());
+            $(".gallery .dimensioncode_part").css("width",$(window).width()/0.56);
+            $(".gallery .dimensioncode_part").css("position","relative");
+            $(".gallery .dimensioncode_part").css("left",($(".gallery .dimensioncode_part").height()-$(".gallery .dimensioncode_part").width())/2);
+            $(".gallery .dimensioncode_part").css("top",-($(".gallery .dimensioncode_part").height()-$(".gallery .dimensioncode_part").width())*15/2);
+            $(".gallery .dimensioncode_part").addClass("ture90deg");
+
+            $(".gallery .dimensioncode_part .dimensioncode").css("position","absolute");
+            $(".gallery .dimensioncode_part .dimensioncode").css("left",0);
+            $(".gallery .dimensioncode_part .dimensioncode").css("top",0);
+            $(".gallery .dimensioncode_part .dimensioncode").css("height",$(window).width());
+            $(".gallery .dimensioncode_part .dimensioncode2").css("position","absolute");
+            $(".gallery .dimensioncode_part .dimensioncode2").css("left",$(window).height()*30/100);
+            $(".gallery .dimensioncode_part .dimensioncode2").css("top",$(window).width()/5);
+            $(".gallery .dimensioncode_part .dimensioncode2").css("height",$(window).width()/3);
+            $(".gallery .dimensioncode_part .dimensioncode2").css("width",$(window).width()/3);
+            $(".gallery .dimensioncode_part .dimensioncode3").css("position","absolute");
+            $(".gallery .dimensioncode_part .dimensioncode3").css("left",$(window).height()*30/100);
+            $(".gallery .dimensioncode_part .dimensioncode3").css("top",$(window).width()*55/100);
+            $(".gallery .dimensioncode_part .dimensioncode3").css("height",$(window).width()/6);
+            $(".gallery .dimensioncode_part .dimensioncode3").css("width",$(window).width()/3);
+            $(".gallery .dimensioncode_part .dimensioncode3").click(function(){
+                $(".gallery .dimensioncode_part .dimensioncode3").attr("id","clickbutton");
+            });
+            $(".gallery .dimensioncode_part .dimensioncode4").css("position","absolute");
+            $(".gallery .dimensioncode_part .dimensioncode4").css("left",$(window).height()*30/100);
+            $(".gallery .dimensioncode_part .dimensioncode4").css("top",$(window).width()*70/100);
+            $(".gallery .dimensioncode_part .dimensioncode4").css("height",$(window).width()/6);
+            $(".gallery .dimensioncode_part .dimensioncode4").css("width",$(window).width()/3);
+            $(".gallery .dimensioncode_part .dimensioncode4").click(function(){
+                $(".gallery .dimensioncode_part .dimensioncode4").attr("id","clickbutton");
+            });
+            $(".gallery .dimensioncode_part .dimensioncode5").css("position","absolute");
+            $(".gallery .dimensioncode_part .dimensioncode5").css("left",$(window).height()*50/100);
+            $(".gallery .dimensioncode_part .dimensioncode5").css("top",$(window).width()/5);
+            $(".gallery .dimensioncode_part .dimensioncode5").css("height",$(window).width()/3);
+            $(".gallery .dimensioncode_part .dimensioncode5").css("width",$(window).height()/3);
+            $(".gallery .dimensioncode_part .dimensioncode6").css("position","absolute");
+            $(".gallery .dimensioncode_part .dimensioncode6").css("left",$(window).height()*50/100);
+            $(".gallery .dimensioncode_part .dimensioncode6").css("top",$(window).width()*55/100);
+            $(".gallery .dimensioncode_part .dimensioncode6").css("height",$(window).width()/3);
+            $(".gallery .dimensioncode_part .dimensioncode6").css("width",$(window).height()/3);
+            $(".gallery .dimensioncode_part .dimensioncode7").css("position","absolute");
+            $(".gallery .dimensioncode_part .dimensioncode7").css("left",$(window).height()*50/100);
+            $(".gallery .dimensioncode_part .dimensioncode7").css("top",$(window).width()*12/100);
+            $(".gallery .dimensioncode_part .dimensioncode7").css("height",$(window).width()/14);
+            $(".gallery .dimensioncode_part .dimensioncode7").css("width",$(window).height()/3);
+            $(".gallery .dimensioncode_part .dimensioncode7 p").css("font-size",$(window).width()/20);
+
+            $(".gallery .dimensioncode_part .dimensioncode8").css("position","absolute");
+            $(".gallery .dimensioncode_part .dimensioncode8").css("left",$(window).height()*56/100);
+            $(".gallery .dimensioncode_part .dimensioncode8").css("top",$(window).width()*22/100);
+            $(".gallery .dimensioncode_part .dimensioncode8").css("height",$(window).width()/14);
+            $(".gallery .dimensioncode_part .dimensioncode8").css("width",$(window).height()/3);
+            $(".gallery .dimensioncode_part .dimensioncode8 p").css("font-size",$(window).width()/18);
+            $(window).scroll(function(event) {
+                var juantop = $(document).scrollTop();
+                var winheight = $(window).height();
+                var distribution = $(".gallery .distribution_part").offset().top;
+                var chinagermany = $(".gallery .chinagermany_part").offset().top;
+                var intelmanufacture = $(".gallery .intelmanufacture_part").offset().top;
+                var electinfomation = $(".gallery .electinfomation_part").offset().top;
+                var aeronautics = $(".gallery .aeronautics_part").offset().top;
+                var laserequipment = $(".gallery .laserequipment_part").offset().top;
+                var oceanindustry = $(".gallery .oceanindustry_part").offset().top;
+                var dimensioncode = $(".gallery .dimensioncode_part").offset().top;
+
+                var num4=0;
+                var num5=0;
+                var num6=0;
+                var num7=0;
+                var num8=0;
+                var num9=0;
+                if((chinagermany<(juantop+winheight/2))&&((juantop+winheight/2)<intelmanufacture)){
+                    var player4 = $("#player4")[0];
+                    if (player4.paused&&num4==0)
+                        player4.play();
+                    num4=1;
+                }else{
+                    var player4 = $("#player4")[0];
+                    if (!player4.paused)
+                        player4.pause();
+                    num4=0;
+                }
+
+                if((intelmanufacture<=(juantop+winheight/2))&&((juantop+winheight/2)<electinfomation)){
+                    var player5 = $("#player5")[0];
+                    if (player5.paused&&num5==0)
+                        player5.play();
+                    num5=1;
+                }else{
+                    var player5 = $("#player5")[0];
+                    if (!player5.paused)
+                        player5.pause();
+                    num5=0;
+                }
+
+                if((electinfomation<=(juantop+winheight/2))&&((juantop+winheight/2)<aeronautics)){
+
+                    var player6 = $("#player6")[0];
+                    if (player6.paused&&num6==0)
+                        player6.play();
+                    num6=1;
+                }else{
+
+                    var player6 = $("#player6")[0];
+                    if (!player6.paused)
+                        player6.pause();
+                    num6=0;
+                }
+
+                if((aeronautics<=(juantop+winheight/2))&&((juantop+winheight/2)<laserequipment)){
+                    var player7 = $("#player7")[0];
+                    if (player7.paused&&num7==0)
+                        player7.play();
+                    num7=1;
+                }else{
+                    var player7 = $("#player7")[0];
+                    if (!player7.paused)
+                        player7.pause();
+                    num7=0;
+                }
+
+                if((laserequipment<=(juantop+winheight/2))&&((juantop+winheight/2)<oceanindustry)){
+                    var player8 = $("#player8")[0];
+                    if (player8.paused&&num8==0)
+                        player8.play();
+                    num8=1;
+                }else{
+                    var player8 = $("#player8")[0];
+                    if (!player8.paused)
+                        player8.pause();
+                    num8=0;
+                }
+
+                if((oceanindustry<=(juantop+winheight/2))&&((juantop+winheight/2)<dimensioncode)){
+                    var player9 = $("#player9")[0];
+                    if (player9.paused&&num9==0)
+                        player9.play();
+                    num9=1;
+                }else{
+                    var player9 = $("#player9")[0];
+                    if (!player9.paused)
+                        player9.pause();
+                    num9=0;
+                }
+
+                if((dimensioncode<=(juantop+winheight/2))&&((juantop+winheight/2)<(dimensioncode+winheight))){}else{}
+
+            });
+
         });
-    }
-</script>
-<style>
-        
+
+        function opendoor(){
+            $(".opendoor_part .left_door .door").attr("id","leftdoor");
+            $(".opendoor_part .right_door .door").attr("id","rightdoor");
+            $(".opendoor_part .title_door").hide();
+            $(".opendoor_part .brand_door").hide();
+
+            document.getElementById("rightdoor").addEventListener("webkitAnimationEnd", function(){$(".opendoor_part .right_door .door").hide();$(".opendoor_part").css("display","none");
+                var player2 = $("#player").get(0);
+                if (player2.paused)
+                    player2.play();
+            });
+            document.getElementById("leftdoor").addEventListener("webkitAnimationEnd", function(){$(".opendoor_part .left_door .door").hide();$(".opendoor_part").css("display","none");
+                var player2 = $("#player").get(0);
+                if (player2.paused)
+                    player2.play();
+            });
+        }
+        function oceananimate(){
+            $(".gallery .oceanindustry_part .oceanindustry3").animate({left:($(window).width()*95/100)+"px",top:($(window).width()*40/100)+"px"},2000, "linear");
+            $(".gallery .oceanindustry_part .oceanindustry3").animate({left:($(window).width()*35/100)+"px",top:($(window).width()*7/100)+"px"},2000, "linear");
+            setTimeout("oceananimate()", 100);
+        }
+    </script>
+    <style>
+
         html, body{
             padding:0px;
             margin:0px;
@@ -666,28 +591,28 @@
             padding:0px;
             margin:0px;
             z-index:994;
-            background-position:30% right;  
-            background-image: url(__IMAGES__/museum//loadingpart/light2.png);
+            background-position:30% right;
+            background-image: url(__IMAGES__/museum/loadingpart/light2.png);
             background-repeat: no-repeat;
             animation:animate6 8s 1;
-            -moz-animation:animate6 8s 1; 
-            -webkit-animation:animate6 8s 1; 
-            -o-animation:animate6 8s 1; 
+            -moz-animation:animate6 8s 1;
+            -webkit-animation:animate6 8s 1;
+            -o-animation:animate6 8s 1;
             animation-timing-function:linear;
         }
         .loading_part .loading5{
             padding:0px;
             margin:0px;
             z-index:995;
-            background-position:30% right;  
-            background-image: url(__IMAGES__/museum//loadingpart/light1.png);
+            background-position:30% right;
+            background-image: url(__IMAGES__/museum/loadingpart/light1.png);
             background-repeat: no-repeat;
             animation:animate6 8s 1;
-            -moz-animation:animate6 8s 1; 
-            -webkit-animation:animate6 8s 1; 
-            -o-animation:animate6 8s 1; 
+            -moz-animation:animate6 8s 1;
+            -webkit-animation:animate6 8s 1;
+            -o-animation:animate6 8s 1;
             animation-timing-function:linear;
-        }       
+        }
         .loading_part .loading6{
             padding:0px;
             margin:0px;
@@ -698,8 +623,8 @@
             margin:0px;
             z-index:997;
         }
-        
-        .opendoor_part{ 
+
+        .opendoor_part{
             padding:0px;
             margin:0px;
             z-index:661;
@@ -721,7 +646,7 @@
         }
         .opendoor_part .left_door{
             padding:0px;
-            margin:0px; 
+            margin:0px;
             z-index:662;
         }
         .opendoor_part .left_door .door{
@@ -738,30 +663,30 @@
             padding:0px;
             margin:0px;
             z-index:662;
-        }       
+        }
         #leftdoor{
             -webkit-transform-origin: left center;
             transform-origin: left center;
             animation:animate21 4s 1;
-            -moz-animation:animate21 4s 1; 
-            -webkit-animation:animate21 4s 1; 
-            -o-animation:animate21 4s 1; 
+            -moz-animation:animate21 4s 1;
+            -webkit-animation:animate21 4s 1;
+            -o-animation:animate21 4s 1;
         }
         #rightdoor{
             -webkit-transform-origin: right center;
             transform-origin: right center;
             animation:animate22 4s 1;
-            -moz-animation:animate22 4s 1; 
-            -webkit-animation:animate22 4s 1; 
-            -o-animation:animate22 4s 1; 
+            -moz-animation:animate22 4s 1;
+            -webkit-animation:animate22 4s 1;
+            -o-animation:animate22 4s 1;
         }
-        
+
         .gallery{
             padding:0px;
             margin:0px;
             z-index:339;
         }
-        
+
         .gallery .distribution_part{
             padding:0px;
             margin:0px;
@@ -770,18 +695,18 @@
             padding:0px;
             margin:0px;
             z-index:331;
-        }   
+        }
         .gallery .distribution_part .distribution2{
             padding:0px;
             margin:0px;
             z-index:332;
-        }   
+        }
         .gallery .distribution_part .distribution3{
             padding:0px;
             margin:0px;
             z-index:333;
         }
-        
+
         .gallery .chinagermany_part{
             padding:0px;
             margin:0px;
@@ -816,11 +741,11 @@
             -moz-transform-origin:center center;
             -o-transform-origin:center center;
             animation:animate9 1s infinite;
-            -moz-animation:animate9 1s infinite; 
-            -webkit-animation:animate9 1s infinite; 
-            -o-animation:animate9 1s infinite; 
+            -moz-animation:animate9 1s infinite;
+            -webkit-animation:animate9 1s infinite;
+            -o-animation:animate9 1s infinite;
         }
-        
+
         .gallery .intelmanufacture_part{
             padding:0px;
             margin:0px;
@@ -840,9 +765,9 @@
             margin:0px;
             z-index:333;
             animation:animate8 2s infinite;
-            -moz-animation:animate8 2s infinite; 
-            -webkit-animation:animate8 2s infinite; 
-            -o-animation:animate8 2s infinite; 
+            -moz-animation:animate8 2s infinite;
+            -webkit-animation:animate8 2s infinite;
+            -o-animation:animate8 2s infinite;
         }
         .gallery .intelmanufacture_part .intelmanufacture4{
             padding:0px;
@@ -854,16 +779,16 @@
             margin:0px;
             z-index:335;
             animation:animate8 1s infinite;
-            -moz-animation:animate8 1s infinite; 
-            -webkit-animation:animate8 1s infinite; 
-            -o-animation:animate8 1s infinite; 
+            -moz-animation:animate8 1s infinite;
+            -webkit-animation:animate8 1s infinite;
+            -o-animation:animate8 1s infinite;
         }
         .gallery .intelmanufacture_part .intelmanufacture6{
             padding:0px;
             margin:0px;
             z-index:336;
         }
-        
+
         .gallery .electinfomation_part{
             padding:0px;
             margin:0px;
@@ -881,10 +806,10 @@
         .gallery .electinfomation_part .electinfomation3{
             padding:0px;
             margin:0px;
-            z-index:333;             
+            z-index:333;
             animation:animate7 2s infinite;
-            -moz-animation:animate7 2s infinite; 
-            -webkit-animation:animate7 2s infinite; 
+            -moz-animation:animate7 2s infinite;
+            -webkit-animation:animate7 2s infinite;
             -o-animation:animate7 2s infinite;
         }
         .gallery .electinfomation_part .electinfomation4{
@@ -897,20 +822,20 @@
             margin:0px;
             z-index:335;
             animation:animate5 1s infinite;
-            -moz-animation:animate5 1s infinite; 
-            -webkit-animation:animate5 1s infinite; 
-            -o-animation:animate5 1s infinite; 
+            -moz-animation:animate5 1s infinite;
+            -webkit-animation:animate5 1s infinite;
+            -o-animation:animate5 1s infinite;
         }
         .gallery .electinfomation_part .electinfomation6{
             padding:0px;
             margin:0px;
             z-index:335;
             animation:animate5 1s infinite;
-            -moz-animation:animate5 1s infinite; 
-            -webkit-animation:animate5 1s infinite; 
-            -o-animation:animate5 1s infinite; 
+            -moz-animation:animate5 1s infinite;
+            -webkit-animation:animate5 1s infinite;
+            -o-animation:animate5 1s infinite;
         }
-        
+
         .gallery .aeronautics_part{
             padding:0px;
             margin:0px;
@@ -930,9 +855,9 @@
             margin:0px;
             z-index:333;
             animation:animate8 2s infinite;
-            -moz-animation:animate8 2s infinite; 
-            -webkit-animation:animate8 2s infinite; 
-            -o-animation:animate8 2s infinite; 
+            -moz-animation:animate8 2s infinite;
+            -webkit-animation:animate8 2s infinite;
+            -o-animation:animate8 2s infinite;
         }
         .gallery .aeronautics_part .aeronautics4{
             padding:0px;
@@ -944,7 +869,7 @@
             margin:0px;
             z-index:335;
         }
-        
+
         .gallery .laserequipment_part{
             padding:0px;
             margin:0px;
@@ -964,8 +889,8 @@
             margin:0px;
             z-index:333;
             animation:animate8 3s infinite;
-            -moz-animation:animate8 3s infinite; 
-            -webkit-animation:animate8 3s infinite; 
+            -moz-animation:animate8 3s infinite;
+            -webkit-animation:animate8 3s infinite;
             -o-animation:animate8 3s infinite;
         }
         .gallery .laserequipment_part .laserequipment4{
@@ -978,11 +903,11 @@
             margin:0px;
             z-index:335;
             animation:animate8 1s infinite;
-            -moz-animation:animate8 1s infinite; 
-            -webkit-animation:animate8 1s infinite; 
+            -moz-animation:animate8 1s infinite;
+            -webkit-animation:animate8 1s infinite;
             -o-animation:animate8 1s infinite;
         }
-        
+
         .gallery .oceanindustry_part{
             padding:0px;
             margin:0px;
@@ -995,18 +920,14 @@
         .gallery .oceanindustry_part .oceanindustry2{
             padding:0px;
             margin:0px;
-            z-index:331;
+            z-index:333;
         }
         .gallery .oceanindustry_part .oceanindustry3{
             padding:0px;
             margin:0px;
             z-index:332;
-            animation:animate10 5s infinite;
-            -moz-animation:animate10 5s infinite; 
-            -webkit-animation:animate10 5s infinite; 
-            -o-animation:animate10 5s infinite;
         }
-        
+
         .gallery .dimensioncode_part{
             padding:0px;
             margin:0px;
@@ -1049,8 +970,9 @@
         .gallery .dimensioncode_part .dimensioncode7 p{
             padding:0px;
             margin:0px;
-            z-index:333;            
+            z-index:333;
             font-weight:bold;
+            font-family:SimHei;
             color:white;
         }
         .gallery .dimensioncode_part .dimensioncode8{
@@ -1063,28 +985,29 @@
             margin:0px;
             z-index:333;
             font-weight:bold;
+            font-family:SimHei;
             color:white;
         }
         #clickbutton{
             animation:animate11 1s 1;
-            -moz-animation:animate11 1s 1; 
-            -webkit-animation:animate11 1s 1; 
-            -o-animation:animate11 1s 1; 
+            -moz-animation:animate11 1s 1;
+            -webkit-animation:animate11 1s 1;
+            -o-animation:animate11 1s 1;
         }
-                
-        .animate6{          
+
+        .animate6{
             animation:animate5 1s infinite;
-            -moz-animation:animate5 1s infinite; 
-            -webkit-animation:animate5 1s infinite; 
-            -o-animation:animate5 1s infinite; 
+            -moz-animation:animate5 1s infinite;
+            -webkit-animation:animate5 1s infinite;
+            -o-animation:animate5 1s infinite;
         }
-        .animate7{    
+        .animate7{
             animation:animate7 1s infinite;
-            -moz-animation:animate7 1s infinite; 
-            -webkit-animation:animate7 1s infinite; 
+            -moz-animation:animate7 1s infinite;
+            -webkit-animation:animate7 1s infinite;
             -o-animation:animate7 1s infinite;
         }
-        
+
         .ture90deg{
             transform: rotate(90deg);
             -webkit-transform: rotate(90deg);
@@ -1092,232 +1015,233 @@
             -o-transform: rotate(90deg);
             -ms-transform: rotate(90deg);
         }
-</style>
+    </style>
 </head>
 <body>
 
-    <div class="loading_part" id="loading_part">
-      <div class="loading" width="100%" height="100%">
-        <img src="__IMAGES__/museum//loadingpart/background.png" alt="Smiley face" width="100%" height="100%">
-      </div>  
-      <div class="loading2" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum//loadingpart/topbrand.png" alt="Smiley face" width="100%" height="100%">
-      </div>
-      <div class="loading3" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum//loadingpart/bottombrand.png" alt="Smiley face" width="100%" height="100%">
-      </div>
-      <div class="loading4" align="center" width="100%" height="100%">
-      </div>
-      <div class="loading5" align="center" width="100%" height="100%">
-      </div>
-      <div class="loading6" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum//loadingpart/ring0.gif" alt="Smiley face" width="100%" height="100%">
-      </div>
-      <div class="loading7" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum//loadingpart/hand.png" alt="Smiley face" width="100%" height="100%">
-      </div>
-      
-      <audio class="background_source" id="player1">
+<div class="loading_part" id="loading_part">
+    <div class="loading" width="100%" height="100%">
+        <img src="__IMAGES__/museum/loadingpart/background.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="loading2" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/loadingpart/topbrand.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="loading3" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/loadingpart/bottombrand.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="loading4" align="center" width="100%" height="100%">
+    </div>
+    <div class="loading5" align="center" width="100%" height="100%">
+    </div>
+    <div class="loading6" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/loadingpart/ring0.gif" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="loading7" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/loadingpart/hand.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+
+    <audio class="background_source" id="player1">
         <source src="__RESOURCE__/video/loveandhonest.mp3" type="audio/mpeg">
-      </audio>  
+    </audio>
+</div>
+
+
+<div class="opendoor_part" style="display:none;">
+    <div class="background_door" width="100%" height="100%">
+        <img src="__IMAGES__/museum/doorpart/background.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="left_door" width="100%" height="100%">
+        <img class="door" src="__IMAGES__/museum/doorpart/leftdoor.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="right_door" width="100%" height="100%">
+        <img class="door" src="__IMAGES__/museum/doorpart/rightdoor.png" alt="Smiley face" width="100%" height="100%">
+    </div>
+    <div class="brand_door" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/doorpart/brand.png" alt="Smiley face" width="55%" height="90%">
+    </div>
+    <div class="title_door" align="center" width="100%" height="100%">
+        <img src="__IMAGES__/museum/doorpart/title.png" alt="Smiley face" width="45%" height="90%">
+    </div>
+
+    <audio class="background_source" id="player2" >
+        <source src="__RESOURCE__/video/loveandhonest.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+
+<div class="gallery" style="display:none;">
+
+    <div class="distribution_part">
+        <div class="distribution" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery3/background.png" alt="Smiley face" width="auto" height="100%">
+        </div>
+        <div class="distribution2" align="center" width="100%" height="100%">
+            <img class="ring" src="__IMAGES__/museum/gallery3/ring0.gif" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="distribution3" align="center" width="100%" height="100%">
+            <img class="hand" src="__IMAGES__/museum/gallery3/hand.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+    </div>
+
+    <div class="chinagermany_part">
+        <div class="chinagermany" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery8/background.png" alt="Smiley face" width="auto" height="100%">
+        </div>
+        <div class="chinagermany2" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery8/brand.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="chinagermany3" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery8/bicycle.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="chinagermany4" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery8/wheel1.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="chinagermany5" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery8/wheel2.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <audio class="background_source" id="player4">
+            <source src="__RESOURCE__/video/audio/showpart/自行车.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div class="intelmanufacture_part">
+        <div class="intelmanufacture" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery6/background.png" alt="Smiley face" width="auto" height="100%">
+        </div>
+        <div class="intelmanufacture2" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery6/brand.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="intelmanufacture3" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery6/light3.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="intelmanufacture4" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery6/product.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="intelmanufacture5" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery6/light2.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="intelmanufacture6" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery6/light1.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <audio class="background_source" id="player5">
+            <source src="__RESOURCE__/video/audio/showpart/劲拓.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div class="electinfomation_part">
+        <div class="electinfomation" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery4/background.png" alt="Smiley face" width="auto" height="100%">
+        </div>
+        <div class="electinfomation2" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery4/brand.png" alt="Smiley face" width="35%" height="90%">
+        </div>
+        <div class="electinfomation3" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery4/light.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="electinfomation4" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery4/sound.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="electinfomation5" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery4/leftnote.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="electinfomation6" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery4/rightnote.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <audio class="background_source" id="player6">
+            <source src="__RESOURCE__/video/audio/showpart/音箱.mp3" type="audio/mpeg">
+        </audio>
     </div>
 
 
-    <div class="opendoor_part" style="display:none;">
-        <div class="background_door" width="100%" height="100%">
-            <img src="__IMAGES__/museum//doorpart/background.png" alt="Smiley face" width="100%" height="100%">
+    <div class="aeronautics_part">
+        <div class="aeronautics" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery5/background.png" alt="Smiley face" width="auto" height="100%">
         </div>
-        <div class="left_door" width="100%" height="100%">
-            <img class="door" src="__IMAGES__/museum//doorpart/leftdoor.png" alt="Smiley face" width="100%" height="100%">
+        <div class="aeronautics2" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery5/brand.png" alt="Smiley face" width="35%" height="90%">
         </div>
-        <div class="right_door" width="100%" height="100%">
-            <img class="door" src="__IMAGES__/museum//doorpart/rightdoor.png" alt="Smiley face" width="100%" height="100%">
-        </div>  
-        <div class="brand_door" align="center" width="100%" height="100%">
-            <img src="__IMAGES__/museum//doorpart/brand.png" alt="Smiley face" width="35%" height="90%">
+        <div class="aeronautics3" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery5/light.png" alt="Smiley face" width="100%" height="100%">
         </div>
-        <div class="title_door" align="center" width="100%" height="100%">
-            <img src="__IMAGES__/museum//doorpart/title.png" alt="Smiley face" width="35%" height="90%">
+        <div class="aeronautics4" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery5/satellite.png" alt="Smiley face" width="100%" height="100%">
         </div>
-        
-        <audio class="background_source" id="player2" >
+        <div class="aeronautics5" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery5/signalring.gif" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <audio class="background_source" id="player7">
+            <source src="__RESOURCE__/video/audio/showpart/华诺方舟.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div class="laserequipment_part">
+        <div class="laserequipment" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery7/background.png" alt="Smiley face" width="auto" height="100%">
+        </div>
+        <div class="laserequipment2" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery7/brand.png" alt="Smiley face" width="35%" height="90%">
+        </div>
+        <div class="laserequipment3" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery7/light2.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="laserequipment4" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery7/product.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="laserequipment5" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery7/light1.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <audio class="background_source" id="player8">
+            <source src="__RESOURCE__/video/audio/showpart/创鑫.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div class="oceanindustry_part">
+        <div class="oceanindustry" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery9/background.png" alt="Smiley face" width="auto" height="100%">
+        </div>
+        <div class="oceanindustry2" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery9/light.png" alt="Smiley face"  width="auto" height="100%">
+        </div>
+        <div class="oceanindustry3" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery9/product.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <audio class="background_source" id="player9">
+            <source src="__RESOURCE__/video/audio/showpart/潜艇.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div class="dimensioncode_part">
+        <div class="dimensioncode" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery10/background.png" alt="Smiley face" width="auto" height="100%">
+        </div>
+        <div class="dimensioncode2" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery10/code.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="dimensioncode3" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery10/sharebottom.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="dimensioncode4" width="100%" height="100%">
+            <a href="https://weibo.com/p/23152297d9fcf360d03bf790a7301dc5e39d91"><img src="__IMAGES__/museum/gallery10/morebottom.png" alt="Smiley face" width="100%" height="100%"></a>
+        </div>
+        <div class="dimensioncode5" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery10/context2.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="dimensioncode6" width="100%" height="100%">
+            <img src="__IMAGES__/museum/gallery10/context1.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="dimensioncode7" width="100%" height="100%"><p>蓝墨科技公司代码</p></div>
+        <div class="dimensioncode8" width="100%" height="100%"><p>777</p></div>
+        <audio class="background_source" id="player10">
             <source src="__RESOURCE__/video/loveandhonest.mp3" type="audio/mpeg">
         </audio>
     </div>
 
 
-    <div class="gallery" style="display:none;">
-        
-        <div class="distribution_part">
-            <div class="distribution" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery3/background.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="distribution2" align="center" width="100%" height="100%">
-                <img class="ring" src="__IMAGES__/museum//gallery3/ring0.gif" alt="Smiley face" width="100%" height="100%">
-            </div>  
-            <div class="distribution3" align="center" width="100%" height="100%">
-                <img class="hand" src="__IMAGES__/museum//gallery3/hand.png" alt="Smiley face" width="100%" height="100%">
-            </div>  
-        </div>
-        
-        <div class="chinagermany_part">
-            <div class="chinagermany" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery8/background.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="chinagermany2" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery8/brand.png" alt="Smiley face" width="35%" height="90%">
-            </div>
-            <div class="chinagermany3" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery8/bicycle.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="chinagermany4" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery8/wheel1.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="chinagermany5" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery8/wheel2.png" alt="Smiley face" width="100%" height="100%">
-            </div>      
-            <audio class="background_source" id="player4">
-                <source src="__RESOURCE__/video/audio/showpart/自行车.mp3" type="audio/mpeg">
-            </audio>
-        </div>
-        
-        <div class="intelmanufacture_part">
-            <div class="intelmanufacture" align="center" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery6/background.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="intelmanufacture2" align="center" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery6/brand.png" alt="Smiley face" width="35%" height="90%">
-            </div>
-            <div class="intelmanufacture3" align="center" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery6/light3.png" alt="Smiley face" width="40%" height="100%">
-            </div>
-            <div class="intelmanufacture4" align="center" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery6/product.png" alt="Smiley face" width="40%" height="100%">
-            </div>
-            <div class="intelmanufacture5" align="center" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery6/light2.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="intelmanufacture6" align="center" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery6/light1.png" alt="Smiley face" width="100%" height="100%">
-            </div>  
-            <audio class="background_source" id="player5">
-                <source src="__RESOURCE__/video/audio/showpart/劲拓.mp3" type="audio/mpeg">
-            </audio>
-        </div>
-        
-        <div class="electinfomation_part">
-            <div class="electinfomation" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery4/background.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="electinfomation2" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery4/brand.png" alt="Smiley face" width="35%" height="90%">
-            </div>
-            <div class="electinfomation3" align="center" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery4/light.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="electinfomation4" align="center" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery4/sound.png" alt="Smiley face" width="100%" height="100%">
-            </div>      
-            <div class="electinfomation5" align="center" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery4/leftnote.png" alt="Smiley face" width="100%" height="100%">
-            </div>      
-            <div class="electinfomation6" align="center" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery4/rightnote.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <audio class="background_source" id="player6">
-                <source src="__RESOURCE__/video/audio/showpart/音箱.mp3" type="audio/mpeg">
-            </audio>        
-        </div>
-        
-        
-        <div class="aeronautics_part">
-            <div class="aeronautics" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery5/background.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="aeronautics2" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery5/brand.png" alt="Smiley face" width="35%" height="90%">
-            </div>
-            <div class="aeronautics3" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery5/light.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="aeronautics4" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery5/satellite.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="aeronautics5" align="center" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery5/signalring.gif" alt="Smiley face" width="100%" height="100%">
-            </div>      
-            <audio class="background_source" id="player7">
-                <source src="__RESOURCE__/video/audio/showpart/华诺方舟.mp3" type="audio/mpeg">
-            </audio>
-        </div>
-        
-        <div class="laserequipment_part">
-            <div class="laserequipment" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery7/background.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="laserequipment2" align="center" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery7/brand.png" alt="Smiley face" width="35%" height="90%">
-            </div>
-            <div class="laserequipment3" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery7/light2.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="laserequipment4" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery7/product.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="laserequipment5" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery7/light1.png" alt="Smiley face" width="100%" height="100%">
-            </div>  
-            <audio class="background_source" id="player8">
-                <source src="__RESOURCE__/video/audio/showpart/创鑫.mp3" type="audio/mpeg">
-            </audio>        
-        </div>
-        
-        <div class="oceanindustry_part">
-            <div class="oceanindustry" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery9/background.png" alt="Smiley face" width="100%" height="100%">
-            </div>      
-            <div class="oceanindustry2" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery9/brand.png" alt="Smiley face" width="35%" height="90%">
-            </div>      
-            <div class="oceanindustry3" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery9/product.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <audio class="background_source" id="player9">
-                <source src="__RESOURCE__/video/audio/showpart/潜艇.mp3" type="audio/mpeg">
-            </audio>
-        </div>
-        
-        <div class="dimensioncode_part">
-            <div class="dimensioncode" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery10/background.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="dimensioncode2" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery10/code.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="dimensioncode3" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery10/sharebottom.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="dimensioncode4" width="100%" height="100%">
-                <a href="https://weibo.com/p/23152297d9fcf360d03bf790a7301dc5e39d91"><img src="__IMAGES__/museum//gallery10/morebottom.png" alt="Smiley face" width="100%" height="100%"></a>
-            </div>      
-            <div class="dimensioncode5" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery10/context2.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="dimensioncode6" width="100%" height="100%">
-                <img src="__IMAGES__/museum//gallery10/context1.png" alt="Smiley face" width="100%" height="100%">
-            </div>
-            <div class="dimensioncode7" width="100%" height="100%"><p>{$nickName}</p></div>
-            <div class="dimensioncode8" width="100%" height="100%"><p>{$num}}</p></div>
-            <audio class="background_source" id="player10">
-                <source src="__RESOURCE__/video/loveandhonest.mp3" type="audio/mpeg">
-            </audio>
-        </div>
-            
-    </div>
+</div>
 
-    <audio class="background_source" id="player">
-      <source src="__RESOURCE__/video/audio/background/background.mp3" type="audio/mpeg">
-    </audio>
+<audio class="background_source" id="player">
+    <source src="__RESOURCE__/video/audio/background/background.mp3" type="audio/mpeg">
+</audio>
 
 </body>
 </html>
