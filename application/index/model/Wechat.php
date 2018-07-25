@@ -53,11 +53,11 @@ class Wechat
         $app = Factory::officialAccount($config);
         $oauth = $app->oauth;
 
-        /*if (empty(Session::get('wechat_user'))) {
+        if (empty(Session::get('wechat_user'))) {
             Session::set('target_url', '/museum');
 
             $oauth->redirect()->send();
-        }*/
+        }
 
         $jssdk = $app->jssdk->buildConfig([
             'onMenuShareTimeline',
