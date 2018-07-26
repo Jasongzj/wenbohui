@@ -12,7 +12,6 @@ use app\index\model\Wechat;
 use EasyWeChat\Factory;
 use think\Controller;
 use think\Session;
-use think\Cache;
 
 
 class Museum extends Controller
@@ -21,14 +20,8 @@ class Museum extends Controller
     {
         $wechatModel = new Wechat();
         $jssdk = $wechatModel->OAuthAndJssdk();
-        $num = Cache::get('view_num');
-        if ($num) {
-            $num++;
-            Cache::inc('view_num');
-        } else {
-            $num = 20180726;
-            Cache::set('view_num', $num, 3 * 24 * 3600);
-        }
+        $array = [20180726, 20180727, 20180728];
+        $num = $array[array_rand($array)];
         $title = '是时候，对一个博览会动手了';
         $link = 'https://www.chingso.com/museum';
         $desc = '恭喜你，成为第20180726位代言人';
