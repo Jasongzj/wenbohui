@@ -27,7 +27,7 @@ class Museum extends Controller
             Cache::inc('view_num');
         } else {
             $num = 20180726;
-            Cache::set('view_num', $num);
+            Cache::set('view_num', $num, 3 * 24 * 3600);
         }
         $title = '是时候，对一个博览会动手了';
         $link = 'https://www.chingso.com/museum';
