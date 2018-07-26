@@ -11,13 +11,15 @@
     <script src="__JS__/museum/flexible.js"></script>
     <script src="__JS__/museum/audio.js"></script>
     <script type="text/javascript" src="__JS__/museum/jquery.min.js"></script>
-    <script src="__JS__/jweixin-1.0.0.js"></script>
-    
+    <script type="text/javascript" src="__JS__/museum/jweixin-1.0.0.js"></script>
+
     <script>
         //微信分享
         function share() {
             //微信配置
-            wx.config({$jssdk});
+            wx.config({
+                $jssdk
+            });
             wx.ready(function() {
                 //分享到朋友圈
                 wx.onMenuShareTimeline({
@@ -88,11 +90,11 @@
         share();
     </script>
     <script>
-        $(function () {
+        $(function() {
             // 音乐
             if (browser.versions.weixin) {
                 //解决部分不能播放音效的手机
-                document.addEventListener("WeixinJSBridgeReady", function () {
+                document.addEventListener("WeixinJSBridgeReady", function() {
                     initAudio();
                 }, false);
             } else {
@@ -133,11 +135,10 @@
                 soundAudio.init(list, true);
                 soundAudio.play('player1');
             }
-
         })
     </script>
     <script>
-        $(function () {
+        $(function() {
 
 
             // var player1 = $("#player1").get(0);
@@ -189,23 +190,24 @@
                 'background-size': $(window).height() + 'px ' + ($(window).width() / 3) + 'px'
             });
 
-            document.getElementById("loading_part").addEventListener("webkitAnimationEnd", function () {
+            document.getElementById("loading_part").addEventListener("webkitAnimationEnd", function() {
                 $(".loading_part").hide();
                 $(".opendoor_part").css("display", "block");
 
                 soundAudio.pause();
+                $('body').css('overflow', 'hidden');
 
                 $(".gallery").css("display", "block");
-                setTimeout(function () {
+                setTimeout(function() {
                     $(".opendoor_part .left_door .door").attr("id", "leftdoor");
                     $(".opendoor_part .right_door .door").attr("id", "rightdoor");
-                    document.getElementById("rightdoor").addEventListener("webkitAnimationStart", function () {
-                        setTimeout(function () {
+                    document.getElementById("rightdoor").addEventListener("webkitAnimationStart", function() {
+                        setTimeout(function() {
                             $(".opendoor_part .title_door").fadeOut(1000);
                             $(".opendoor_part .brand_door").fadeOut(1000);
-                        }, 500)
+                        }, 1000)
                     });
-                    document.getElementById("rightdoor").addEventListener("webkitAnimationEnd", function () {
+                    document.getElementById("rightdoor").addEventListener("webkitAnimationEnd", function() {
                         $(".opendoor_part .right_door .door").hide();
                         $(".opendoor_part").css("display", "none");
                         bgmAudio.play();
@@ -215,7 +217,7 @@
                         $(".opendoor_part .title_door").hide();
                         $(".opendoor_part .brand_door").hide();
                     });
-                    document.getElementById("leftdoor").addEventListener("webkitAnimationEnd", function () {
+                    document.getElementById("leftdoor").addEventListener("webkitAnimationEnd", function() {
                         $(".opendoor_part .left_door .door").hide();
                         $(".opendoor_part").css("display", "none");
                         bgmAudio.play();
@@ -223,7 +225,7 @@
                         // if (player2.paused)
                         //     player2.play();
                     });
-                }, 1500);
+                }, 4000);
                 // $(".opendoor_part .title_door").hide();
                 // $(".opendoor_part .brand_door").hide();
 
@@ -315,7 +317,7 @@
             $(".opendoor_part .right_door").css("width", $(window).height() * 11 / 20);
             $(".opendoor_part .right_door").css("height", $(window).width());
 
-            $(".opendoor_part").click(function () {
+            $(".opendoor_part").click(function() {
 
             });
 
@@ -351,7 +353,7 @@
             $(".gallery .distribution_part .distribution3").css("width", $(window).width() / 6);
             $(".gallery .distribution_part .distribution3").css("height", $(window).width() / 6);
 
-            $(".distribution_part").click(function () {
+            $(".distribution_part").click(function() {
                 var e = window.event;
                 var space = $(window).width() / 12;
                 $(".gallery .distribution_part .distribution2").css("display", "block");
@@ -366,6 +368,7 @@
                 $("html,body").animate({
                     scrollTop: $(".gallery .chinagermany_part").offset().top
                 }, 3000);
+                $("body").css('overflow', 'auto');
             });
 
             $(".gallery .chinagermany_part").css("height", $(window).width());
@@ -393,16 +396,16 @@
             $(".gallery .chinagermany_part .chinagermany3").css("height", "40%");
             $(".gallery .chinagermany_part .chinagermany3").css("z-index", "334");
             $(".gallery .chinagermany_part .chinagermany4").css("position", "absolute");
-            $(".gallery .chinagermany_part .chinagermany4").css("left", $(window).height() * 57 / 100);
-            $(".gallery .chinagermany_part .chinagermany4").css("top", $(window).width() * 69 / 100);
-            $(".gallery .chinagermany_part .chinagermany4").css("width", $(window).width() / 4);
-            $(".gallery .chinagermany_part .chinagermany4").css("height", $(window).width() / 4);
+            $(".gallery .chinagermany_part .chinagermany4").css("left", $(window).height() * 0.59123995);
+            $(".gallery .chinagermany_part .chinagermany4").css("top", $(window).width() * 0.72991397);
+            $(".gallery .chinagermany_part .chinagermany4").css("width", $(window).width() / 5);
+            $(".gallery .chinagermany_part .chinagermany4").css("height", $(window).width() / 5);
             $(".gallery .chinagermany_part .chinagermany4").css("z-index", "333");
             $(".gallery .chinagermany_part .chinagermany5").css("position", "absolute");
-            $(".gallery .chinagermany_part .chinagermany5").css("left", $(window).height() * 79 / 100);
-            $(".gallery .chinagermany_part .chinagermany5").css("top", $(window).width() * 70 / 100);
-            $(".gallery .chinagermany_part .chinagermany5").css("width", $(window).width() / 4);
-            $(".gallery .chinagermany_part .chinagermany5").css("height", $(window).width() / 4);
+            $(".gallery .chinagermany_part .chinagermany5").css("left", $(window).height() * 0.80664753);
+            $(".gallery .chinagermany_part .chinagermany5").css("top", $(window).width() * 0.7244898);
+            $(".gallery .chinagermany_part .chinagermany5").css("width", $(window).width() / 5);
+            $(".gallery .chinagermany_part .chinagermany5").css("height", $(window).width() / 5);
             $(".gallery .chinagermany_part .chinagermany5").css("z-index", "333");
 
             $(".gallery .intelmanufacture_part").css("height", $(window).width());
@@ -580,7 +583,7 @@
             $(".gallery .oceanindustry_part .oceanindustry3").css("width", $(window).width() * 712 / 1080);
             $(".gallery .oceanindustry_part .oceanindustry3").css("height", $(window).width() * 564 / 1080);
 
-            setTimeout(function () {
+            setTimeout(function() {
                 oceananimate()
             }, 100);
 
@@ -593,7 +596,7 @@
                     left: ($(window).width() * 35 / 100) + "px",
                     top: ($(window).width() * 7 / 100) + "px"
                 }, 2000, "linear");
-                setTimeout(function () {
+                setTimeout(function() {
                     oceananimate()
                 }, 100);
             }
@@ -620,15 +623,20 @@
             // $(".gallery .dimensioncode_part .dimensioncode3").css("top", $(window).width() * 55 / 100);
             // $(".gallery .dimensioncode_part .dimensioncode3").css("height", $(window).width() / 6);
             // $(".gallery .dimensioncode_part .dimensioncode3").css("width", $(window).width() / 3);
-            $(".gallery .dimensioncode_part .dimensioncode3").click(function () {
+            $(".gallery .dimensioncode_part .dimensioncode3").click(function() {
                 $(".gallery .dimensioncode_part .dimensioncode3").attr("id", "clickbutton");
+                $('.mark').show();
             });
+
+            $('.mark').on('click', function(){
+                $('.mark').hide();
+            })
             // $(".gallery .dimensioncode_part .dimensioncode4").css("position", "absolute");
             // $(".gallery .dimensioncode_part .dimensioncode4").css("left", $(window).height() * 30 / 100);
             // $(".gallery .dimensioncode_part .dimensioncode4").css("top", $(window).width() * 70 / 100);
             // $(".gallery .dimensioncode_part .dimensioncode4").css("height", $(window).width() / 6);
             // $(".gallery .dimensioncode_part .dimensioncode4").css("width", $(window).width() / 3);
-            $(".gallery .dimensioncode_part .dimensioncode4").click(function () {
+            $(".gallery .dimensioncode_part .dimensioncode4").click(function() {
                 $(".gallery .dimensioncode_part .dimensioncode4").attr("id", "clickbutton");
                 window.location.href = 'https://weibo.com/p/23152297d9fcf360d03bf790a7301dc5e39d91';
             });
@@ -643,7 +651,7 @@
             // // $(".gallery .dimensioncode_part .dimensioncode6").css("height", $(window).width() / 3);
             // $(".gallery .dimensioncode_part .dimensioncode6").css("width", $(window).height() / 3);
 
-            $(window).scroll(function (event) {
+            $(window).scroll(function(event) {
                 var juantop = $(document).scrollTop();
                 var winheight = $(window).height();
                 var distribution = $(".gallery .distribution_part").offset().top;
@@ -661,9 +669,16 @@
                 var num7 = 0;
                 var num8 = 0;
                 var num9 = 0;
+
+                if (juantop > winheight) {
+                    $('.arrow').show();
+                } else {
+                    $('.arrow').hide();
+                }
+
                 if ((chinagermany < (juantop + winheight / 2)) && ((juantop + winheight / 2) < intelmanufacture)) {
                     if (num4 == 0)
-                        setTimeout(function () {
+                        setTimeout(function() {
                             soundAudio.play('player4');
                         }, 100)
                     num4 = 1;
@@ -674,7 +689,7 @@
 
                 if ((intelmanufacture <= (juantop + winheight / 2)) && ((juantop + winheight / 2) < electinfomation)) {
                     if (num5 == 0)
-                        setTimeout(function () {
+                        setTimeout(function() {
                             soundAudio.play('player5');
                         }, 100)
                     num5 = 1;
@@ -685,7 +700,7 @@
 
                 if ((electinfomation <= (juantop + winheight / 2)) && ((juantop + winheight / 2) < aeronautics)) {
                     if (num6 == 0)
-                        setTimeout(function () {
+                        setTimeout(function() {
                             soundAudio.play('player6');
                         }, 100)
                     num6 = 1;
@@ -696,7 +711,7 @@
 
                 if ((aeronautics <= (juantop + winheight / 2)) && ((juantop + winheight / 2) < laserequipment)) {
                     if (num7 == 0)
-                        setTimeout(function () {
+                        setTimeout(function() {
                             soundAudio.play('player7');
                         }, 100)
                     num7 = 1;
@@ -707,7 +722,7 @@
 
                 if ((laserequipment <= (juantop + winheight / 2)) && ((juantop + winheight / 2) < oceanindustry)) {
                     if (num8 == 0)
-                        setTimeout(function () {
+                        setTimeout(function() {
                             soundAudio.play('player8');
                         }, 100)
                     num8 = 1;
@@ -718,7 +733,7 @@
 
                 if ((oceanindustry <= (juantop + winheight / 2)) && ((juantop + winheight / 2) < dimensioncode)) {
                     if (num9 == 0)
-                        setTimeout(function () {
+                        setTimeout(function() {
                             soundAudio.play('player9');
                         }, 100)
                     num9 = 1;
@@ -728,9 +743,9 @@
                 }
 
                 if ((dimensioncode <= (juantop + winheight / 2)) && ((juantop + winheight / 2) < (dimensioncode + winheight))) {
-
+                    $('.arrow').hide();
                 } else {
-
+                    // $('.arrow').show();
                 }
 
                 // console.log(num9);
@@ -744,6 +759,7 @@
         body {
             padding: 0px;
             margin: 0px;
+            font-family: Microsoft Yahei, SimSun, Helvetica;
         }
 
         .loading_part {
@@ -1148,6 +1164,7 @@
             padding: 0px;
             margin: 0px;
             z-index: 331;
+            display: none;
         }
 
         .gallery .oceanindustry_part .oceanindustry3 {
@@ -1241,7 +1258,9 @@
             background-size: 100% 100%;
             animation: start 1.5s infinite ease-in-out;
             z-index: 9999;
+            display: none;
         }
+
         .dimensioncode_part {
             background-image: url(__IMAGES__/museum/gallery10/background.png);
             background-size: cover;
@@ -1251,7 +1270,7 @@
         }
 
         .dimensioncode2 {
-            width: 11.87rem;
+            width: 12.09rem;
             height: 3.41rem;
             position: absolute;
             top: 1.73rem;
@@ -1261,9 +1280,9 @@
         .dimensioncode2 .number {
             position: absolute;
             top: 0.51rem;
-            left: 5.13rem;
+            left: 5.1rem;
             color: #fff;
-            font-size: 0.4032rem;
+            font-size: 0.48rem;
             font-weight: 700;
         }
 
@@ -1297,410 +1316,249 @@
             height: 2.71rem;
             position: absolute;
             top: 5.51rem;
-            left: 49.11vh;
+            left: calc(28.8vh + 3.9rem);
+        }
+
+        .mark {
+            width: 100vw;
+            height: 100vh;
+            z-index: 99999;
+            background: rgba(0, 0, 0, 0.3);
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            display: none;
+        }
+
+        .mark img{
+            width: 200px;
+            position: absolute;
+            right: 40px;
+            bottom: 0px;
+            transform: rotate(90deg);
         }
     </style>
 </head>
 
 <body>
 
-<div class="arrow start"></div>
+    <div class="arrow start"></div>
 
-<div class="loading_part" id="loading_part">
-    <div class="loading" width="100%" height="100%">
-        <img src="__IMAGES__/museum/loadingpart/background.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="loading2" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/loadingpart/topbrand.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="loading3" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/loadingpart/bottombrand.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="loading4" align="center" width="100%" height="100%">
-    </div>
-    <div class="loading5" align="center" width="100%" height="100%">
-    </div>
-    <div class="loading6" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/loadingpart/ring0.gif" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="loading7" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/loadingpart/hand.png" alt="Smiley face" width="100%" height="100%">
-    </div>
+    <div class="loading_part" id="loading_part">
+        <div class="loading" width="100%" height="100%">
+            <img src="__IMAGES__/museum/loadingpart/background.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="loading2" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/loadingpart/topbrand.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="loading3" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/loadingpart/bottombrand.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="loading4" align="center" width="100%" height="100%">
+        </div>
+        <div class="loading5" align="center" width="100%" height="100%">
+        </div>
+        <div class="loading6" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/loadingpart/ring0.gif" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="loading7" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/loadingpart/hand.png" alt="Smiley face" width="100%" height="100%">
+        </div>
 
-    <!-- <audio class="background_source" id="player1">
-        <source src="__RESOURCE__/video/loveandhonest.mp3" type="audio/mpeg">
-    </audio> -->
-</div>
-
-
-<div class="opendoor_part" style="display:none;">
-    <div class="background_door" width="100%" height="100%">
-        <img src="__IMAGES__/museum/doorpart/background.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="left_door" width="100%" height="100%">
-        <img class="door" src="__IMAGES__/museum/doorpart/leftdoor.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="right_door" width="100%" height="100%">
-        <img class="door" src="__IMAGES__/museum/doorpart/rightdoor.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="brand_door" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/doorpart/brand.png" alt="Smiley face" height="100%">
-    </div>
-    <div class="title_door" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/doorpart/title.png" alt="Smiley face" width="50%">
-    </div>
-
-    <!-- <audio class="background_source" id="player2">
-        <source src="__RESOURCE__/video/loveandhonest.mp3" type="audio/mpeg">
-    </audio> -->
-</div>
-
-
-<div class="gallery" style="display:none;">
-
-    <div class="distribution_part">
-        <div class="distribution" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery3/background.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="distribution2" align="center" width="100%" height="100%">
-            <img class="ring" src="__IMAGES__/museum/gallery3/ring0.gif" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="distribution3" align="center" width="100%" height="100%">
-            <img class="hand" src="__IMAGES__/museum/gallery3/hand.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-    </div>
-
-    <div class="chinagermany_part">
-        <div class="chinagermany" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery8/background.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="chinagermany2" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery8/brand.png" alt="Smiley face" width="35%" height="90%">
-        </div>
-        <div class="chinagermany3" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery8/bicycle.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="chinagermany4" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery8/wheel1.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="chinagermany5" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery8/wheel2.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <!--    <audio class="background_source" id="player4">
-            <source src="__RESOURCE__/video/audio/showpart/bicycle.mp3" type="audio/mpeg">
-        </audio> -->
-    </div>
-
-    <div class="intelmanufacture_part">
-        <div class="intelmanufacture" align="center" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery6/background.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="intelmanufacture2" align="center" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery6/brand.png" alt="Smiley face" width="35%" height="90%">
-        </div>
-        <div class="intelmanufacture3" align="center" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery6/light3.png" alt="Smiley face" width="40%" height="100%">
-        </div>
-        <div class="intelmanufacture4" align="center" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery6/product.png" alt="Smiley face" width="40%" height="100%">
-        </div>
-        <div class="intelmanufacture5" align="center" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery6/light2.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="intelmanufacture6" align="center" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery6/light1.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <!--  <audio class="background_source" id="player5">
-            <source src="__RESOURCE__/video/audio/showpart/manufacture.mp3" type="audio/mpeg">
-        </audio> -->
-    </div>
-
-    <div class="electinfomation_part">
-        <div class="electinfomation" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery4/background.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="electinfomation2" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery4/brand.png" alt="Smiley face" width="35%" height="90%">
-        </div>
-        <div class="electinfomation3" align="center" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery4/light.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="electinfomation4" align="center" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery4/sound.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="electinfomation5" align="center" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery4/leftnote.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="electinfomation6" align="center" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery4/rightnote.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <!-- <audio class="background_source" id="player6">
-            <source src="__RESOURCE__/video/audio/showpart/electronic.mp3" type="audio/mpeg">
-        </audio> -->
-    </div>
-
-    <div class="aeronautics_part">
-        <div class="aeronautics" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery5/background.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="aeronautics2" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery5/brand.png" alt="Smiley face" width="35%" height="90%">
-        </div>
-        <div class="aeronautics3" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery5/light.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="aeronautics4" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery5/satellite.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="aeronautics5" align="center" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery5/signalring.gif" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <!-- <audio class="background_source" id="player7">
-            <source src="__RESOURCE__/video/audio/showpart/spaceflight.mp3" type="audio/mpeg">
-        </audio> -->
-    </div>
-
-    <div class="laserequipment_part">
-        <div class="laserequipment" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery7/background.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="laserequipment2" align="center" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery7/brand.png" alt="Smiley face" width="35%" height="90%">
-        </div>
-        <div class="laserequipment3" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery7/light2.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="laserequipment4" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery7/product.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="laserequipment5" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery7/light1.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <!-- <audio class="background_source" id="player8">
-            <source src="__RESOURCE__/video/audio/showpart/laser.mp3" type="audio/mpeg">
-        </audio> -->
-    </div>
-
-    <div class="oceanindustry_part">
-        <div class="oceanindustry" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery9/background.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="oceanindustry2" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery9/brand.png" alt="Smiley face" width="35%" height="90%">
-        </div>
-        <div class="oceanindustry3" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery9/product.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <!-- <audio class="background_source" id="player9">
-            <source src="__RESOURCE__/video/audio/showpart/submarine.mp3" type="audio/mpeg">
-        </audio> -->
-    </div>
-
-    <div class="dimensioncode_part">
-        <div class="dimensioncode" width="100%" height="100%">
-            <!-- <img src="__IMAGES__/museum/gallery10/background.png" alt="Smiley face" width="100%"> -->
-        </div>
-        <div class="dimensioncode2" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery10/codeMsg.png" alt="Smiley face" width="100%" height="100%">
-            <span class="number">{$num}</span>
-            <span class="name">{$nickName}</span>
-        </div>
-        <div class="dimensioncode3" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery10/sharebottom.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <div class="dimensioncode4" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery10/morebottom.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <!-- <div class="dimensioncode5" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery10/context2.png" alt="Smiley face" width="100%" height="100%">
-        </div> -->
-        <div class="dimensioncode6" width="100%" height="100%">
-            <img src="__IMAGES__/museum/gallery10/context1.png" alt="Smiley face" width="100%" height="100%">
-        </div>
-        <!-- <audio class="background_source" id="player10">
+        <!-- <audio class="background_source" id="player1">
             <source src="__RESOURCE__/video/loveandhonest.mp3" type="audio/mpeg">
         </audio> -->
     </div>
-</div>
-
-<!-- <audio class="background_source" id="player2" >
-    <source src="__RESOURCE__/video/loveandhonest.mp3" type="audio/mpeg">
-</audio> -->
-</div>
 
 
+    <div class="opendoor_part" style="display:none;">
+        <div class="background_door" width="100%" height="100%">
+            <img src="__IMAGES__/museum/doorpart/background.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="left_door" width="100%" height="100%">
+            <img class="door" src="__IMAGES__/museum/doorpart/leftdoor.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="right_door" width="100%" height="100%">
+            <img class="door" src="__IMAGES__/museum/doorpart/rightdoor.png" alt="Smiley face" width="100%" height="100%">
+        </div>
+        <div class="brand_door" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/doorpart/brand.png" alt="Smiley face" height="100%">
+        </div>
+        <div class="title_door" align="center" width="100%" height="100%">
+            <img src="__IMAGES__/museum/doorpart/title.png" alt="Smiley face" width="50%">
+        </div>
+
+        <!-- <audio class="background_source" id="player2">
+            <source src="__RESOURCE__/video/loveandhonest.mp3" type="audio/mpeg">
+        </audio> -->
+    </div>
 
 
-<!-- <audio class="background_source" id="player">
-<div class="distribution_part">
-    <div class="distribution" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery3/background.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="distribution2" align="center" width="100%" height="100%">
-        <img class="ring" src="__IMAGES__/museum/gallery3/ring0.gif" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="distribution3" align="center" width="100%" height="100%">
-        <img class="hand" src="__IMAGES__/museum/gallery3/hand.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-</div>
+    <div class="gallery" style="display:none;">
 
-<div class="chinagermany_part">
-    <div class="chinagermany" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery8/background.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="chinagermany2" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery8/brand.png" alt="Smiley face" width="35%" height="90%">
-    </div>
-    <div class="chinagermany3" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery8/bicycle.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="chinagermany4" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery8/wheel1.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="chinagermany5" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery8/wheel2.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <audio class="background_source" id="player4">
-        <source src="__RESOURCE__/video/audio/showpart/bicycle.mp3" type="audio/mpeg">
-    </audio>
-</div>
+        <div class="distribution_part">
+            <div class="distribution" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery3/background.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="distribution2" align="center" width="100%" height="100%">
+                <img class="ring" src="__IMAGES__/museum/gallery3/ring0.gif" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="distribution3" align="center" width="100%" height="100%">
+                <img class="hand" src="__IMAGES__/museum/gallery3/hand.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+        </div>
 
-<div class="intelmanufacture_part">
-    <div class="intelmanufacture" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery6/background.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="intelmanufacture2" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery6/brand.png" alt="Smiley face" width="35%" height="90%">
-    </div>
-    <div class="intelmanufacture3" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery6/light3.png" alt="Smiley face" width="40%" height="100%">
-    </div>
-    <div class="intelmanufacture4" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery6/product.png" alt="Smiley face" width="40%" height="100%">
-    </div>
-    <div class="intelmanufacture5" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery6/light2.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="intelmanufacture6" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery6/light1.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <audio class="background_source" id="player5">
-        <source src="__RESOURCE__/video/audio/showpart/manufacture.mp3" type="audio/mpeg">
-    </audio>
-</div>
+        <div class="chinagermany_part">
+            <div class="chinagermany" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery8/background.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="chinagermany2" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery8/brand.png" alt="Smiley face" width="35%" height="90%">
+            </div>
+            <div class="chinagermany3" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery8/bicycle.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="chinagermany4" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery8/wheel1.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="chinagermany5" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery8/wheel2.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <!--    <audio class="background_source" id="player4">
+                <source src="__RESOURCE__/video/audio/showpart/bicycle.mp3" type="audio/mpeg">
+            </audio> -->
+        </div>
 
-<div class="electinfomation_part">
-    <div class="electinfomation" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery4/background.png" alt="Smiley face" width="100%" height="100%">
+        <div class="intelmanufacture_part">
+            <div class="intelmanufacture" align="center" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery6/background.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="intelmanufacture2" align="center" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery6/brand.png" alt="Smiley face" width="35%" height="90%">
+            </div>
+            <div class="intelmanufacture3" align="center" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery6/light3.png" alt="Smiley face" width="40%" height="100%">
+            </div>
+            <div class="intelmanufacture4" align="center" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery6/product.png" alt="Smiley face" width="40%" height="100%">
+            </div>
+            <div class="intelmanufacture5" align="center" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery6/light2.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="intelmanufacture6" align="center" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery6/light1.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <!--  <audio class="background_source" id="player5">
+                <source src="__RESOURCE__/video/audio/showpart/manufacture.mp3" type="audio/mpeg">
+            </audio> -->
+        </div>
+
+        <div class="electinfomation_part">
+            <div class="electinfomation" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery4/background.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="electinfomation2" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery4/brand.png" alt="Smiley face" width="35%" height="90%">
+            </div>
+            <div class="electinfomation3" align="center" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery4/light.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="electinfomation4" align="center" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery4/sound.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="electinfomation5" align="center" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery4/leftnote.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="electinfomation6" align="center" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery4/rightnote.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <!-- <audio class="background_source" id="player6">
+                <source src="__RESOURCE__/video/audio/showpart/electronic.mp3" type="audio/mpeg">
+            </audio> -->
+        </div>
+
+        <div class="aeronautics_part">
+            <div class="aeronautics" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery5/background.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="aeronautics2" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery5/brand.png" alt="Smiley face" width="35%" height="90%">
+            </div>
+            <div class="aeronautics3" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery5/light.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="aeronautics4" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery5/satellite.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="aeronautics5" align="center" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery5/signalring.gif" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <!-- <audio class="background_source" id="player7">
+                <source src="__RESOURCE__/video/audio/showpart/spaceflight.mp3" type="audio/mpeg">
+            </audio> -->
+        </div>
+
+        <div class="laserequipment_part">
+            <div class="laserequipment" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery7/background.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="laserequipment2" align="center" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery7/brand.png" alt="Smiley face" width="35%" height="90%">
+            </div>
+            <div class="laserequipment3" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery7/light2.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="laserequipment4" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery7/product.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="laserequipment5" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery7/light1.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <!-- <audio class="background_source" id="player8">
+                <source src="__RESOURCE__/video/audio/showpart/laser.mp3" type="audio/mpeg">
+            </audio> -->
+        </div>
+
+        <div class="oceanindustry_part">
+            <div class="oceanindustry" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery9/background.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="oceanindustry2" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery9/brand.png" alt="Smiley face" width="35%" height="90%">
+            </div>
+            <div class="oceanindustry3" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery9/product.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <!-- <audio class="background_source" id="player9">
+                <source src="__RESOURCE__/video/audio/showpart/submarine.mp3" type="audio/mpeg">
+            </audio> -->
+        </div>
+
+        <div class="dimensioncode_part">
+            <div class="dimensioncode" width="100%" height="100%">
+            </div>
+            <div class="dimensioncode2" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery10/codeMsg.png" alt="Smiley face" width="100%" height="100%">
+                <span class="number">{$num}</span>
+                <span class="name">{$nickName}</span>
+            </div>
+            <div class="dimensioncode3" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery10/sharebottom.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="dimensioncode4" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery10/morebottom.png" alt="Smiley face" width="100%" height="100%">
+            </div>
+            <div class="dimensioncode6" width="100%" height="100%">
+                <img src="__IMAGES__/museum/gallery10/context1.png" alt="Smiley face" width="100%" height="100%">
+            </div>            
+        </div>
+
+        <div class="mark">
+            <img src="__IMAGES__/museum/share.png" alt="">
+        </div>
     </div>
-    <div class="electinfomation2" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery4/brand.png" alt="Smiley face" width="35%" height="90%">
-    </div>
-    <div class="electinfomation3" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery4/light.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="electinfomation4" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery4/sound.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="electinfomation5" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery4/leftnote.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="electinfomation6" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery4/rightnote.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <audio class="background_source" id="player6">
-        <source src="__RESOURCE__/video/audio/showpart/electronic.mp3" type="audio/mpeg">
-    </audio>
-</div>
 
 
-<div class="aeronautics_part">
-    <div class="aeronautics" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery5/background.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="aeronautics2" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery5/brand.png" alt="Smiley face" width="35%" height="90%">
-    </div>
-    <div class="aeronautics3" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery5/light.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="aeronautics4" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery5/satellite.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="aeronautics5" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery5/signalring.gif" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <audio class="background_source" id="player7">
-        <source src="__RESOURCE__/video/audio/showpart/spaceflight.mp3" type="audio/mpeg">
-    </audio>
-</div>
-
-<div class="laserequipment_part">
-    <div class="laserequipment" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery7/background.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="laserequipment2" align="center" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery7/brand.png" alt="Smiley face" width="35%" height="90%">
-    </div>
-    <div class="laserequipment3" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery7/light2.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="laserequipment4" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery7/product.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="laserequipment5" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery7/light1.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <audio class="background_source" id="player8">
-        <source src="__RESOURCE__/video/audio/showpart/laser.mp3" type="audio/mpeg">
-    </audio>
-</div>
-
-<div class="oceanindustry_part">
-    <div class="oceanindustry" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery9/background.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="oceanindustry2" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery9/brand.png" alt="Smiley face" width="35%" height="90%">
-    </div>
-    <div class="oceanindustry3" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery9/product.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <audio class="background_source" id="player9">
-        <source src="__RESOURCE__/video/audio/showpart/submarine.mp3" type="audio/mpeg">
-    </audio>
-</div>
-
-<div class="dimensioncode_part">
-    <div class="dimensioncode" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery10/background.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="dimensioncode2" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery10/code.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="dimensioncode3" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery10/sharebottom.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="dimensioncode4" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery10/morebottom.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="dimensioncode5" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery10/context2.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <div class="dimensioncode6" width="100%" height="100%">
-        <img src="__IMAGES__/museum/gallery10/context1.png" alt="Smiley face" width="100%" height="100%">
-    </div>
-    <audio class="background_source" id="player10">
-        <source src="__RESOURCE__/video/loveandhonest.mp3" type="audio/mpeg">
-    </audio>
-</div>
-
-
-</div>
-
-<!-- <audio class="background_source" id="player">
-<source src="__RESOURCE__/video/audio/background/background.mp3" type="audio/mpeg">
-</audio> -->
 
 </body>
 
