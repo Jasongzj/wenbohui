@@ -203,9 +203,9 @@
                     $(".opendoor_part .right_door .door").attr("id", "rightdoor");
                     document.getElementById("rightdoor").addEventListener("webkitAnimationStart", function() {
                         setTimeout(function() {
-                            $(".opendoor_part .title_door").fadeOut(1000);
-                            $(".opendoor_part .brand_door").fadeOut(1000);
-                        }, 1000)
+                            $(".opendoor_part .title_door").fadeOut(300);
+                            $(".opendoor_part .brand_door").fadeOut(300);
+                        }, 200)
                     });
                     document.getElementById("rightdoor").addEventListener("webkitAnimationEnd", function() {
                         $(".opendoor_part .right_door .door").hide();
@@ -225,7 +225,7 @@
                         // if (player2.paused)
                         //     player2.play();
                     });
-                }, 4000);
+                }, 3000);
                 // $(".opendoor_part .title_door").hide();
                 // $(".opendoor_part .brand_door").hide();
 
